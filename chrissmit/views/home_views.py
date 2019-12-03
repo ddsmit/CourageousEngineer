@@ -2,8 +2,7 @@ import flask
 from chrissmit.infrastructure.view_modifiers import response
 import chrissmit.services.article_service as article_service
 
-blueprint = flask.Blueprint('home', __name__, template_folder='templates')
-
+blueprint = flask.Blueprint('home_views', __name__, template_folder='templates')
 
 @blueprint.route('/')
 @response(template_file='home/index.html')
