@@ -5,16 +5,45 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/site.css">
+    {% if additional_css %}
+        <link rel="stylesheet" href="{{ additional_css }}">
+    {% endif %}
+
 
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/articles">Articles</a>
-        <a href="/contact">Contact</a>
-    </nav>
+{#<div class="background-design">#}
+{#    BLACK <br>#}
+{#    IS <br>#}
+{#    BEAUTIFUL#}
+{#</div>#}
+<div class="logo">
+
+    <div class="c_chris">C</div>
+    <div class="hris_chris">hris</div>
+    <div class="s_smit">S</div>
+    <div class="mit_smit">mit</div>
+</div>
+
+<nav>
+{#        TODO Add url_for to href#}
+    <a href="{{ url_for('navigation.index') }}">Home</a>
+    <a href="{{ url_for('navigation.about') }}">About</a>
+    <a href="{{ url_for('navigation.articles') }}">Articles</a>
+    <a href="{{ url_for('navigation.contact') }}">Contact</a>
+</nav>
+
+
 <div class="main_content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     {% block main_content %}
     {% endblock %}
 </body>

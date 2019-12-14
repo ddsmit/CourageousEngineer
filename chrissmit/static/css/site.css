@@ -1,27 +1,99 @@
 title {
     font-weight: bold;
 }
+html {
+    background-color: rgba(80,80,80,.5);
+}
+.background-design {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-weight: bolder;
+    font-size: 25vw;
+    position: absolute;
+    /*z-index: -1;*/
+    overflow: hidden;
+    margin: 5vw;
+    width: 90vw;
+}
+
+html {
+    background-color: rgba(80,80,80,0.80);
+    z-index: -2;
+}
+
+.logo .c_chris {
+    position: fixed;
+    color: pink;
+    font-size: 150px;
+    z-index: -1;
+}
+
+.logo .hris_chris {
+    position: fixed;
+    color: hotpink;
+    font-size: 50px;
+    z-index: -1;
+}
+
+.logo .s_smit {
+    position: fixed;
+
+    color: palevioletred;
+    font-size: 150px;
+    z-index: -1;
+}
+
+.logo .mit_smit {
+    position: fixed;
+    color: lightpink;
+    font-size: 50px;
+    z-index: -1;
+}
 
 .main_content {
+    background-color: rgba(160,160,160,0.6);
     padding: 20px;
 }
 
 nav {
-    background-color: grey;
-    padding: 10px;
-    font-size: 20px;
+   background-color: rgba(80,80,80,0.80);
+    font-size: 30px;
+    width: 100%;
+    padding-top: 60px;
+    margin: 0;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 
-nav > a {
+nav a {
+    display: inline-block;
+    color: pink;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+nav a:hover {
+    background-color: lightpink;
+    color: rgba(80,80,80,0.6);
+    border-radius: 5px;
+}
+
+nav a:active {
+    background-color: lightpink;
+    opacity: 50%;
+    border-radius: 5px;
+}
+
+a {
+    color: pink
+}
+a:hover {
     color: lightpink;
-    margin-right: 10px;
-    padding: 30px;
 }
 
-nav > a:hover {
+::selection {
+    background-color: rgba(80,80,80,0.6);
     color: lightpink;
-}
-
-html {
-    background-color: lightgrey;
 }

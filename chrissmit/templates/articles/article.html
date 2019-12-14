@@ -1,0 +1,25 @@
+{% extends "shared/_layout.html" %}
+{% block title %} {{ article.preview }}{% endblock %}
+{% block main_content %}
+<div class="main_content">
+
+    {% if not article %}
+         <div>
+            Article Not Found!
+         </div>
+    {%  endif %}
+
+    {% if article %}
+
+        <h2>{{ article.title }}</h2>
+
+        <article>
+            {{ article.content }}
+        </article>
+        <strong>Posted by </strong> {{ article.author }} on {{ article.posted }}
+        {% if article.edited %}
+            Edited:{{ article.edited }}
+        {% endif %}
+    {% endif %}
+
+{%  endblock %}

@@ -1,0 +1,22 @@
+{% extends "shared/_layout.html" %}
+{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block main_content %}
+<div class="main_content">
+    <h2>Articles</h2>
+    {% if not articles %}
+     <div>
+        Nothing has been posted yet, please stay tuned!
+     </div>
+    {%  endif %}
+    {% if articles %}
+        {%  for s in articles %}
+            <article>
+                <h3>
+                    <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                </h3>
+                {{ s.preview }}
+            </article>
+        {% endfor %}
+    {% endif %}
+</div>
+{%  endblock %}

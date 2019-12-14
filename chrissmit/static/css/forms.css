@@ -1,0 +1,4 @@
+form-group, btn-outline-info input:focus {
+    border: 1px solid lightpink;
+    outline: none;
+}
