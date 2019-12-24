@@ -1,0 +1,42 @@
+{% extends "shared/_layout.html" %}
+{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block main_content %}
+<div class="main_content">
+    <h1>Welcome!</h1>
+    Welcome to the thought palace of (Y) Chris(tine) Smit. It is such an honor to be able to share with the world, and I hope that my experiences will help somebody else who is walking down a simular path.
+    <br>Click one of the links below to check out my recent posts.
+    <h2>Recent Thoughts</h2>
+    {% if not articles %}
+     <div>
+        Nothing has been posted yet, please stay tuned!
+     </div>
+    {%  endif %}
+    {% if articles %}
+        {%  for s in articles %}
+            <article>
+                <h3>
+                    <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                </h3>
+                {{ s.preview }}
+            </article>
+
+        {% endfor %}
+    {% endif %}
+    <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+        <p>text</p>
+</div>
+
+{%  endblock %}
