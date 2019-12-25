@@ -17,6 +17,7 @@ def index():
 def about():
     return dict()
 
+
 @blueprint.route('/articles')
 @response(template_file='navigation/articles.html')
 def articles():
