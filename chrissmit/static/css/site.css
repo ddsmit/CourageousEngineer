@@ -78,33 +78,29 @@ nav {
 
 nav > a {
     display: inline-block;
-    color: lightpink;
+    color: #186262;
     text-align: center;
     padding: 14px 16px;
 }
 
 nav > a:hover {
-    background-color: lightpink;
+    background-color: #186262;
     color: rgba(80,80,80,0.6);
-    border-radius: 5px;
 }
 
 nav > a:active {
     background-color: lightpink;
     opacity: 50%;
-    border-radius: 5px;
 }
 
 a {
-    background-color: rgba(80,80,80,0.80);
-    color: lightpink;
-    border-radius: 5px;
+    background-color:rgba(80,80,80,0.80);
+    color: #186262;
 }
 a:hover {
     background-color: rgba(80,80,80,0.80);
     color: lightpink;
     opacity: 60%;
-    border-radius: 5px;
 }
 
 article {
