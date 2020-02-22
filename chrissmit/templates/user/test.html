@@ -1,0 +1,13 @@
+{% extends "shared/_layout.html" %}
+{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block main_content %}
+<div class="main_content row">
+    <form method="POST" action="" id="'test_form">
+        <button type="submit" name="nearest" value="Nearest">Nearest</button>
+        <button type="submit" name="kmean" value="KMean">KMean</button>
+    </form>
+<h1>{{ result }}</h1>
+
+    </div>
+</div>
+{%  endblock %}
