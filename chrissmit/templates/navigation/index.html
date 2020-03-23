@@ -1,5 +1,5 @@
 {% extends "shared/_layout.html" %}
-{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block title %}The courage to do the right thing{% endblock %}
 {% block main_content %}
 <div class="main_content row">
 <div class="col-lg">
@@ -7,51 +7,36 @@
     Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.
     <p>From social biases to doing the right thing when there is massive opposition and potential impact to your career, many of us have had situations that required courage,
     our hope is that sharing these experiences will help others facing these difficult situations in the enigneering world.
-    <h2>Recent Thoughts</h2>
-    {% if not articles %}
+    {% if not recent_articles %}
      <div>
         Nothing has been posted yet, please stay tuned!
      </div>
     {%  endif %}
-    {% if articles %}
-        {%  for s in articles %}
-            <article>
-                <h3>
-                    <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
-                </h3>
-                {{ s.preview }}
-            </article>
-
+    {% if recent_articles %}
+        <div class="row">
+        {%  for s in recent_articles %}
+            <div class="col-lg-6">
+                <article>
+                    <div class="row">
+                        <h3 class="float-center">
+                            <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                        </h3>
+                    </div>
+                    <div class="row">
+                        {{ s.preview }}
+                    </div>
+                    <div class="row">
+                        <div class="post_image float-center">
+                            <a href={{ "/articles/" + s.page }}><object type="image/svg+xml" data="{{ s.image }}" width="250"></object></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
         {% endfor %}
+        </div>
         <br>
 
-        <small> More content coming very soon! Stay tuned in early 2020....</small>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-                <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
-        <p>text</p>
+
     {% endif %}
 
 </div>

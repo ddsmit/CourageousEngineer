@@ -8,4 +8,4 @@ blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templ
 @response(template_file='articles/article.html')
 def article(article):
     article_data = article_service.get_article_data(article)
-    return dict(article=article_data)
+    return dict(story=article_data)

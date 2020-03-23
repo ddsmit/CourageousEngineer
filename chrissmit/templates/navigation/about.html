@@ -1,10 +1,29 @@
 {% extends "shared/_layout.html" %}
 {% block title %}About the Legend Herself{% endblock %}
 {% block main_content %}
-<h1>Chris Smit</h1>
-    <p >
-    This area is under construction. I could say a lot about Chris Smit, but I think it would be best to let the lady herself
-    be the one to lay it out for you.
-    </p>
+    {% if authors %}
+        {% for author in authors %}
+            <div class="main_content row">
+                <h1>{{ author.name }}</h1>
+            </div>
+            <div class="row">
+                <h5>{{ author.twitter_handle }}</h5>
+            </div>
+            <div class="row">
+                <h5>{{ author.alias }}</h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p >
+                        {{ author.content}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <object type="image/svg+xml" data="{{ author.image }}"></object>
+                </div>
+
+            </div>
+        {% endfor %}
+    {%  endif %}
 
 {% endblock %}

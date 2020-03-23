@@ -67,6 +67,7 @@ a:hover {
 article {
     border-width: 3px;
     border-color: rgba(80,80,80,0.6);
+    padding: 30px;
 }
 
 #logo {
@@ -81,6 +82,15 @@ article {
   background-color: #186262;
 }
 
-#navbarNavDropdown.show {
-    color: red;
+.collapse.show {
+    float: left;
+}
+
+.collapse:not(.show) {
+    float: right;
+}
+
+.post_image {
+    padding: 15px;
+    width: 60%;
 }

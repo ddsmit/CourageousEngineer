@@ -26,41 +26,35 @@
 </head>
 <body>
 <div class="nav-outer fixed-top">
-    <div class="col-12 menu">
-        <nav class="navbar navbar-expand-lg">
+    <div class="container menu">
+        <nav class="navbar navbar-expand-lg col-sm-12">
             <button class="navbar-toggler logo" type="button" data-toggle="collapse" data-target="#navbarNavDropdown " id="logo">
-                <svg x="0px" y="0px" width="154px" height="128px">
-                  <title>Courageous Engineer</title>
-                  <polyline fill="#6FC7C7" points="32,0 128,0 112,32 32,32 "></polyline>
-                  <polyline fill="#6FC7C7" points="32,128 128,128 112,96 32,96 "></polyline>
-                  <polyline fill="#6FC7C7" points="48,48 90,48 90,80 48,80 "></polyline>
-                  <polyline fill="#186262" points="0,64 32,0 64,0 32,64 64,128 32,128 "></polyline>
-                </svg>
+                <object type="image/svg+xml" data="static/img/logo.xml"></object>
             </button>
-        <div class="float-right">
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav float-right">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.index') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.about') }}">About</a></li>
-                    <li class="nav-item">
-                       <div class="dropdown show">
-                          <a class="nav-link"
-                             href="#" role="button"
-                             id="dropdownMenuLink"
-                             data-toggle="dropdown"
-                             aria-haspopup="true"
-                             aria-expanded="false">Articles</a>
+            <div class="col-sm-9">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.index') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.about') }}">About</a></li>
+                        <li class="nav-item">
+                           <div class="dropdown show">
+                              <a class="nav-link"
+                                 href="#" role="button"
+                                 id="dropdownMenuLink"
+                                 data-toggle="dropdown"
+                                 aria-haspopup="true"
+                                 aria-expanded="false">Articles</a>
 
-                            <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
-                                {%  for s in recent_articles %}
-                                    <a class="dropdown-item" href={{ "/articles/" + s.page }}> {{ s.title }}</a>
-                                {% endfor %}
-                                <a class="dropdown-item" href="{{ url_for('navigation.articles') }}">All Articles</a>
-                            </div>
-                          </div>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.contact') }}">Contact</a></li>
-                </ul>
-            </div>
+                                <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
+                                    {%  for s in recent_articles %}
+                                        <a class="dropdown-item" href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                                    {% endfor %}
+                                    <a class="dropdown-item" href="{{ url_for('navigation.articles') }}">All Articles</a>
+                                </div>
+                              </div>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.contact') }}">Contact</a></li>
+                    </ul>
+                </div>
         </div>
         </nav>
     </div>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="128"
+   width="128"
+   y="0px"
+   x="0px"
+   id="logo"
+   version="1.1">
+  <metadata
+     id="metadata5009">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Courageous Engineer</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs5007" />
+  <title
+     id="title4994">Courageous Engineer</title>
+  <polyline
+     style="fill:#6fc7c7"
+     id="polyline4996"
+     points="32,0 128,0 112,32 32,32 " />
+  <polyline
+     style="fill:#6fc7c7"
+     id="polyline4998"
+     points="32,128 128,128 112,96 32,96 " />
+  <polyline
+     style="fill:#6fc7c7"
+     id="polyline5000"
+     points="48,48 90,48 90,80 48,80 " />
+  <polyline
+     style="fill:#186262"
+     id="polyline5002"
+     points="0,64 32,0 64,0 32,64 64,128 32,128 " />
+</svg>

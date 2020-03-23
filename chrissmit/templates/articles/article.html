@@ -1,26 +1,25 @@
 {% extends "shared/_layout.html" %}
-{% block title %} {{ article.preview }}{% endblock %}
+{% block title %} {{ story.preview }}{% endblock %}
 {% block main_content %}
 <div class="main_content">
-
-    {% if not article %}
+    {% if not story %}
          <div>
             Article Not Found!
          </div>
     {%  endif %}
 
-    {% if article %}
+    {% if story %}
 
-        <h2>{{ article.title }}</h2>
-
+        <h2>{{ story.title }}</h2>
+        <object type="image/svg+xml" data="{{story.image}}"></object>
         <article>
-            {{ article.content }}
+            {{ story.content }}
         </article>
         <br>
-        <strong>Posted by </strong> {{ article.author }} on {{ article.posted }}
-        {% if article.edited %}
-            Edited:{{ article.edited }}
+        <strong>Posted by </strong> {{ story.author }} on {{ story.posted }}
+        {% if story.edited %}
+            Edited:{{ story.edited }}
         {% endif %}
     {% endif %}
-
+</div>
 {%  endblock %}

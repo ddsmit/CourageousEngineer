@@ -27,19 +27,4 @@ def login():
         flash(f'Invalid Email or Password. Please check spelling and try again','warning')
     return render_template(template_name_or_list='user/login.html', form=form, additional_css='/static/css/forms.css')
 
-def ml_nearest():
-    return '47'
 
-def kmean():
-    return 'also 47'
-
-@blueprint.route('/test', methods=['GET','POST'])
-def test():
-    ref_func = {
-        'Nearest':ml_nearest,
-        'KMean':kmean,
-    }
-    result=''
-    if request.method == 'POST':
-        result = ref_func[list(request.form.values())[0]]()
-    return render_template(template_name_or_list='user/test.html', result=result)
