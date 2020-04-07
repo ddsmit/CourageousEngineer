@@ -3,7 +3,7 @@ authors = [
         'name': 'Yolanda Smit',
         'alias': 'Chris Smit',
         'twitter_handle': '@yoyosmit',
-        'image': 'static/img/yoyo.xml',
+        'image': 'static/img/authors/yoyo.svg',
         'content': """
         This area is under construction. I could say a lot about Chris Smit, but I think it would be best to let the lady herself
         be the one to lay it out for you.
@@ -26,7 +26,7 @@ authors = [
     {
         'name': 'David Smit',
         'twitter_handle': '@davidouglasmit',
-        'image': 'static/img/dave.xml',
+        'image': 'static/img/authors/dave.xml',
         'content': """
         I am a mechanical engineer by trade and education, but I love all types of engineering and problem solving.
         I started learning Python to be more effective with my analysis at work, and I fell in love with the language. 

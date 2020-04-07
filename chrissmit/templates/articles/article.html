@@ -9,9 +9,12 @@
     {%  endif %}
 
     {% if story %}
-
         <h2>{{ story.title }}</h2>
-        <object type="image/svg+xml" data="{{story.image}}"></object>
+        <div class="row">
+            <div class="col-sm-12">
+                <object class="post_image" type="image/svg+xml" data="{{'../../../'+story.image}}"></object>
+            </div>
+        </div>
         <article>
             {{ story.content }}
         </article>

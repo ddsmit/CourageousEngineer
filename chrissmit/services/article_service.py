@@ -1,6 +1,6 @@
 articles = [
     {
-        'title': 'Building a Legacy',
+        'name': 'Building a Legacy',
         'author': 'hubby',
         'page': 'building',
         'preview': 'It starts as a gift...',
@@ -15,7 +15,7 @@ articles = [
         'image':'static/img/stories/gift-svgrepo-com.xml',
     },
     {
-        'title': 'Actenuating Accents',
+        'name': 'Actenuating Accents',
         'author': 'Yolanda Smit',
         'page': 'accents',
         'preview': "It's hard to listen when all you do is hear...",
@@ -27,10 +27,10 @@ articles = [
         """,
         'posted': '12/6/2019',
         'edited': None,
-        'image':'static/img/stories/aa.xml'
+        'image':'static/img/stories/aa.svg'
     },
     {
-        'title': 'Building a Legacy',
+        'name': 'Building a Legacy',
         'author': 'hubby',
         'page': 'building',
         'preview': 'It starts as a gift...',
@@ -45,7 +45,7 @@ articles = [
         'image': 'static/img/stories/gift-svgrepo-com.xml',
     },
     {
-        'title': 'Actenuating Accents',
+        'name': 'Actenuating Accents',
         'author': 'Yolanda Smit',
         'page': 'accents',
         'preview': "It's hard to listen when all you do is hear...",
@@ -57,10 +57,10 @@ articles = [
     """,
         'posted': '12/6/2019',
         'edited': None,
-        'image': 'static/img/stories/aa.xml'
+        'image': 'static/img/stories/aa.svg'
     },
     {
-        'title': 'Building a Legacy',
+        'name': 'Building a Legacy',
         'author': 'hubby',
         'page': 'building',
         'preview': 'It starts as a gift...',
@@ -75,7 +75,7 @@ articles = [
         'image': 'static/img/stories/gift-svgrepo-com.xml',
     },
     {
-        'title': 'Actenuating Accents',
+        'name': 'Actenuating Accents',
         'author': 'Yolanda Smit',
         'page': 'accents',
         'preview': "It's hard to listen when all you do is hear...",
@@ -87,7 +87,7 @@ articles = [
     """,
         'posted': '12/6/2019',
         'edited': None,
-        'image': 'static/img/stories/aa.xml'
+        'image': 'static/img/stories/aa.svg'
     },
 ]
 def get_last_four_articles():

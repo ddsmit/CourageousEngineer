@@ -28,9 +28,11 @@
 <div class="nav-outer fixed-top">
     <div class="container menu">
         <nav class="navbar navbar-expand-lg col-sm-12">
-            <button class="navbar-toggler logo" type="button" data-toggle="collapse" data-target="#navbarNavDropdown " id="logo">
-                <object type="image/svg+xml" data="static/img/logo.xml"></object>
-            </button>
+            <div class="row">
+                <button class="navbar-toggler logo" type="button" data-toggle="collapse" data-target="#navbarNavDropdown " id="logo">
+                    <img src="../../../static/img/logo.svg">
+                </button>
+            </div>
             <div class="col-sm-9">
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
@@ -66,7 +68,7 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
+                        <div class="alert alert-{{ category }} message">
                             {{ message }}
                         </div>
                     {% endfor %}
