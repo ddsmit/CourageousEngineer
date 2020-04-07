@@ -7,6 +7,39 @@
     Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.
     <p>From social biases to doing the right thing when there is massive opposition and potential impact to your career, many of us have had situations that required courage,
     our hope is that sharing these experiences will help others facing these difficult situations in the enigneering world.
+    {% if update_form %}
+        <form method="POST" action="">
+            {{ update_form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ update_form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                        {{ update_form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in update_form.title.errors %}
+                                <span> {{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ update_form.title(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ update_form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                        {{ update_form.content(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in update_form.content.errors %}
+                                <span> {{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ update_form.content(class="form-control form-control-lg"}}
+                    {% endif %}
+                </div>
+            </fieldset>
+        </form>
+    {% endif %}
     {% if not recent_articles %}
      <div>
         Nothing has been posted yet, please stay tuned!

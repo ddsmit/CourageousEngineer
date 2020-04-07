@@ -26,7 +26,7 @@ def login():
     if form.validate_on_submit():
         user = 'Yolanda Smit'
         flash(f'Logged in as {user}','success')
-        return redirect(url_for('maintenance.user_main'))
+        return redirect(url_for('navigation.index'))
     return render_template(template_name_or_list='user/login.html', form=form, additional_css='/static/css/forms.css')
 
 
