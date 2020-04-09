@@ -1,5 +1,5 @@
 {% extends "shared/_layout.html" %}
-{% block title %}Register New User{% endblock %}
+{% block title %}Log In{% endblock %}
 {% block main_content %}
 <div class="main_content">
     <form method="POST" action="">
@@ -47,7 +47,4 @@
         </small>
     </form>
 </div>
-    <div class="text-muted">
-        Need an account? <a class="ml-2" href="{{ url_for("user.login") }}">Sign up now.</a>
-    </div>
 {%  endblock %}

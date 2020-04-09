@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from chrissmit.services.db_models import User
 
 class RegistrationFrom(FlaskForm):
     username = StringField(
@@ -37,3 +38,10 @@ class LogInForm(FlaskForm):
         'Remember Me',
     )
     submit = SubmitField('Log In')
+
+    def validate_email(self, email):
+        print(email.data)
+        user = User.query.filter_by(email=email.data).first()
+        print(user)
+        if not user:
+            raise ValidationError("Not a valid user's email")

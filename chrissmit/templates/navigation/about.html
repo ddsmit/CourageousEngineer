@@ -4,22 +4,22 @@
     {% if authors %}
         {% for author in authors %}
             <div class="main_content row">
-                <h1>{{ author.name }}</h1>
+                <h1>{{ author.full_name }}</h1>
             </div>
             <div class="row">
                 <h5>{{ author.twitter_handle }}</h5>
             </div>
             <div class="row">
-                <h5>{{ author.alias }}</h5>
+                <h5>{{ author.username }}</h5>
             </div>
             <div class="row">
                 <div class="col-lg-7">
                     <p >
-                        {{ author.content}}
+                        {{ author.content }}
                     </p>
                 </div>
                 <div class="col-lg-4">
-                    <object type="image/svg+xml" data="{{ author.image }}"></object>
+                    <object type="image/svg+xml" data="{{ 'static/img/authors/'+ author.image_file }}"></object>
                 </div>
 
             </div>
