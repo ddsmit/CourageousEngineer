@@ -1,0 +1,32 @@
+{% extends "shared/_layout.html" %}
+{% block title %}Update Your Profile{% endblock %}
+{% block main_content %}
+<div class="main_content">
+    <form method="POST" action="">
+        {{ profile_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Update Your Profile</legend>
+            <div class="form-group">
+                {{ profile_form.email.label(class="form-control-lable") }}
+                {% if profile_form.email.errors %}
+                    {{ profile_form.email(class="form-control form-control-lg is-invalid",formdata='woot',) }}
+                    <div class="invalid-feedback">
+                        {%  for error in form.email.errors %}
+                            <span> {{ error }}</span>
+                        {%  endfor %}
+                    </div>
+                {% else %}
+                    {{  profile_form.email(class="form-control form-control-lg", formdata='wooooot') }}
+                {% endif %}
+            </div>            
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn-outline-info") }}
+        </div>
+        <small class="text-muted ml-2">
+            <a href="#">Forgot Password?</a>
+        </small>
+    </form>
+</div>
+
+{%  endblock %}

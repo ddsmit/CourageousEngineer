@@ -7,13 +7,24 @@
     Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.
     <p>From social biases to doing the right thing when there is massive opposition and potential impact to your career, many of us have had situations that required courage,
     our hope is that sharing these experiences will help others facing these difficult situations in the enigneering world.
-    <h2>Updates</h2>
-    {% if updates %}
-        {% for update in updates %}
-            <h3>{{ update.title }}</h3>
-            <article>{{ update.content }}</article>
-        {% endfor %}
-    {% endif %}
+    <div class="row">
+        <h2>Updates</h2>
+    </div>
+        {% if updates %}
+            {% for update in updates %}
+                <div class="container">
+                    <div class="row">
+                        <h4>{{ update.title }}</h4>
+                        {% if current_user.is_authenticated %}
+                            <br><a href="">edit</a> / <a href="">delete</a>
+                        {% endif %}
+                    </div>
+                    <div class="row">Posted: {{ update.posted }} </div>
+                    {{ update.content }}
+                    <br>
+                </div>
+            {% endfor %}
+        {% endif %}
     {% if update_form and current_user.is_authenticated %}
         <form method="POST" action="">
             {{ update_form.hidden_tag() }}

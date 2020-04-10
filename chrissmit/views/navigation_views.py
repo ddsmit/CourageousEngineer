@@ -14,9 +14,9 @@ blueprint = flask.Blueprint('navigation', __name__, template_folder='templates')
 @blueprint.route('/', methods=['GET','POST'])
 def index():
     updates_form = UpdatesForm()
-    updates = Update.query.all()
+    updates = Update.query.order_by(Update.posted.desc()).all()
     last_four = article_service.get_last_four_articles()
-    if updates_form.validate_on_submit():
+    if updates_form.validate_on_submit() and current_user.is_authenticated:
         new_update = Update(
             title=updates_form.title.data,
             user_id=current_user.username,

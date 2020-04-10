@@ -45,4 +45,4 @@ class Update(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'Post(title={self.username},preview={self.email},date={self.posted}'
+        return f'Post(title={self.title},posted={self.posted}'
