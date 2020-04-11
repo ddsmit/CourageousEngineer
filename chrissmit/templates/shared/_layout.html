@@ -66,9 +66,9 @@
                                   aria-expanded="false">{{ current_user.full_name }}</a>
  
                                  <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
-                                     <a class="dropdown-item" href="/profile">Update Profile</a>
-                                     <a class="dropdown-item" href="/maintain_articles">Add/Edit Article</a>
-                                     <a class="dropdown-item" href="/messages">Read Messages</a>
+                                     <a class="dropdown-item" href="{{ url_for('maintenance.update_profile') }}">Update Profile</a>
+                                     <a class="dropdown-item" href="{{ url_for('maintenance.update_articles') }}">Add/Edit Article</a>
+                                     <a class="dropdown-item" href="{{ url_for('maintenance.read_messages') }}">Read Messages</a>
                                      <a class="dropdown-item" href="/logout">Log Out</a>
                                  </div>
                                </div>

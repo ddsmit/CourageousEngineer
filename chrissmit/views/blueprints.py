@@ -2,8 +2,8 @@ def register(app):
     from chrissmit.views import user_views
     from chrissmit.views import article_views
     from chrissmit.views import navigation_views
-    from chrissmit.views import maintenance
+    from chrissmit.views import maintenance_views
     app.register_blueprint(navigation_views.blueprint)
     app.register_blueprint(article_views.blueprint)
     app.register_blueprint(user_views.blueprint)
-    app.register_blueprint(maintenance.blueprint)
+    app.register_blueprint(maintenance_views.blueprint)
