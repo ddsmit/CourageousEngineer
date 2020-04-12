@@ -16,7 +16,7 @@
                     <div class="row">
                         <h4>{{ update.title }}</h4>
                         {% if current_user.is_authenticated %}
-                            <br><a href="">edit</a> / <a href="">delete</a>
+                            <br><a href="">edit</a> / <a href="delete/update/{{ update.id }}">delete</a>
                         {% endif %}
                     </div>
                     <div class="row">Posted: {{ update.posted }} </div>

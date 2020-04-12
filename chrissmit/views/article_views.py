@@ -1,11 +1,13 @@
 import flask
-from chrissmit.infrastructure.view_modifiers import response
-import chrissmit.services.article_service as article_service
+from flask import render_template
+from chrissmit import services
 
 blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templates')
 
 @blueprint.route('/articles/<article>')
-@response(template_file='articles/article.html')
 def article(article):
-    article_data = article_service.get_article_data(article)
-    return dict(story=article_data)
+    article_data = services.article.get_article_data(article)
+    return render_template(
+        template_name_or_list='articles/article.html',
+        story=article_data
+        )

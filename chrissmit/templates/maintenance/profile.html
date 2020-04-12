@@ -46,6 +46,32 @@
                 {% endif %}
             </div>
             <div class="form-group">
+                {{ profile_form.twitter_handle.label(class="form-control-lable") }}
+                {% if profile_form.twitter_handle.errors %}
+                    {{ profile_form.twitter_handle(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {%  for error in form.twitter_handle.errors %}
+                            <span> {{ error }}</span>
+                        {%  endfor %}
+                    </div>
+                {% else %}
+                    {{  profile_form.twitter_handle(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ profile_form.image_file.label(class="form-control-lable") }}
+                {% if profile_form.image_file.errors %}
+                    {{ profile_form.image_file(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {%  for error in form.image_file.errors %}
+                            <span> {{ error }}</span>
+                        {%  endfor %}
+                    </div>
+                {% else %}
+                    {{  profile_form.image_file(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>
+            <div class="form-group">
                 {{ profile_form.content.label(class="form-control-lable") }}
                 {% if profile_form.content.errors %}
                     {{ profile_form.content(class="form-control form-control-lg is-invalid",) }}

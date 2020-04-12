@@ -1,8 +1,6 @@
 import flask
-from flask import render_template, url_for, redirect
-from chrissmit.infrastructure.view_modifiers import response
-import chrissmit.services.article_service as article_service
-import chrissmit.services.author_service as author_service
+from flask import render_template, url_for, redirect, flash
+from chrissmit.services import profile, article
 from chrissmit.services.db_models import User, Post, Update
 from chrissmit.forms.content import UpdatesForm
 from chrissmit import db
@@ -15,7 +13,7 @@ blueprint = flask.Blueprint('navigation', __name__, template_folder='templates')
 def index():
     updates_form = UpdatesForm()
     updates = Update.query.order_by(Update.posted.desc()).all()
-    last_four = article_service.get_last_four_articles()
+    last_four = article.get_last_four_articles()
     if updates_form.validate_on_submit() and current_user.is_authenticated:
         new_update = Update(
             title=updates_form.title.data,
@@ -35,23 +33,30 @@ def index():
 
 
 @blueprint.route('/about')
-@response(template_file='navigation/about.html')
 def about():
-    last_four = article_service.get_last_four_articles()
-    authors = User.query.all()
-    print(authors)
-    return dict(recent_articles=last_four, authors=authors)
+    last_four = article.get_last_four_articles()
+    authors = profile.get_all()
+    return render_template(
+        template_name_or_list='navigation/about.html',
+        recent_articles=last_four, 
+        authors=authors,
+        )
 
 
 @blueprint.route('/articles')
-@response(template_file='navigation/articles.html')
 def articles():
-    articles = article_service.get_all_articles()
-    last_four = article_service.get_last_four_articles()
-    return dict(articles=articles, recent_articles=last_four)
+    articles = article.get_all_articles()
+    last_four = article.get_last_four_articles()
+    return render_template(
+        template_name_or_list='navigation/articles.html',
+        recent_articles=last_four, 
+        articles=articles,
+        )
 
 @blueprint.route('/contact')
-@response(template_file='navigation/contact.html')
 def contact():
-    last_four = article_service.get_last_four_articles()
-    return dict(recent_articles=last_four)
+    last_four = article.get_last_four_articles()
+    return render_template(
+        template_name_or_list='navigation/contact.html',
+        recent_articles=last_four, 
+        )

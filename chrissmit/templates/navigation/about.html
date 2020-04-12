@@ -7,7 +7,7 @@
                 <h1>{{ author.full_name }}</h1>
             </div>
             <div class="row">
-                <h5>{{ author.twitter_handle }}</h5>
+                <h5><a href="https://www.twitter.com/{{ author.twitter_handle }}">{{ author.twitter_handle }}</a></h5>
             </div>
             <div class="row">
                 <h5>{{ author.username }}</h5>
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-7">
                     <p >
-                        {{ author.content }}
+                        {{ author.content | safe }}
                     </p>
                 </div>
                 <div class="col-lg-4">
