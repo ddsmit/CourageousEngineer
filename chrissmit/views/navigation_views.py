@@ -1,6 +1,6 @@
 import flask
 from flask import render_template, url_for, redirect, flash
-from chrissmit.services import profile, article
+from chrissmit.services import profile, article, update
 from chrissmit.services.db_models import User, Post, Update
 from chrissmit.forms.content import UpdatesForm
 from chrissmit import db
@@ -12,7 +12,7 @@ blueprint = flask.Blueprint('navigation', __name__, template_folder='templates')
 @blueprint.route('/', methods=['GET','POST'])
 def index():
     updates_form = UpdatesForm()
-    updates = Update.query.order_by(Update.posted.desc()).all()
+    updates = update.get_last(5)
     last_four = article.get_last_four_articles()
     if updates_form.validate_on_submit() and current_user.is_authenticated:
         new_update = Update(

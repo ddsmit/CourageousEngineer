@@ -21,7 +21,7 @@ def update(form):
     current_user.content=form.content.data
     db.session.commit()
 
-def update_profile_form_data(form):
+def update_form_data(form):
     form.full_name.data = current_user.full_name
     form.user_name.data = current_user.username
     form.email.data = current_user.email
