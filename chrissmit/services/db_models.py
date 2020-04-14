@@ -9,22 +9,23 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, )
-    username = db.Column(db.String(20), unique=True, nullable=False, )
+    linkedin = db.Column(db.String(100),)
     full_name = db.Column(db.String(45), unique=False, nullable=False,)
     twitter_handle = db.Column(db.String(20), unique=True, nullable=False,)
     email = db.Column(db.String(120), unique=True, nullable=False, )
     image_file = db.Column(db.String(20), nullable=False, default='default.svg', )
     password = db.Column(db.String(60), nullable=False, )
-    posts = db.relationship('Post', backref='author', lazy=True)
+    articles = db.relationship('Article', backref='author', lazy=True)
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'User(id={self.id},username={self.username},email={self.email})'
+        return f'User(id={self.id},full_name={self.full_name},email={self.email})'
 
-class Post(db.Model):
+class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    aticle_id = db.Column(db.Integer, nullable=False,) #used for tracking ongoing changes
-    is_ready_for_review = db.Column(db.Boolean, default=False,)
+    article_id = db.Column(db.Integer, nullable=False,) #used for tracking ongoing changes
+    # is_edited_for_release = db.Column(db.Boolean, default=False,)
+    is_ready_for_release = db.Column(db.Boolean, default=False,)
     is_released = db.Column(db.Boolean, default=False,)
     title = db.Column(db.String(100), nullable=False,)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -34,7 +35,9 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'Post(title={self.username},preview={self.email},date={self.posted}'
+        released = self.is_released and not self.is_ready_for_review
+        return f'Article(title={self.username},preview={self.email},date={self.posted}'
+
 
 class Update(db.Model):
     id = db.Column(db.Integer, primary_key=True)

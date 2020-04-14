@@ -1,103 +1,38 @@
-articles = [
-    {
-        'name': 'Building a Legacy',
-        'author': 'hubby',
-        'page': 'building',
-        'preview': 'It starts as a gift...',
-        'content': """
-        On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-        I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-        black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-        The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-        """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image':'static/img/stories/gift-svgrepo-com.xml',
-    },
-    {
-        'name': 'Actenuating Accents',
-        'author': 'Yolanda Smit',
-        'page': 'accents',
-        'preview': "It's hard to listen when all you do is hear...",
-        'content': """
-        On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-        I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-        black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-        The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-        """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image':'static/img/stories/aa.svg'
-    },
-    {
-        'name': 'Building a Legacy',
-        'author': 'hubby',
-        'page': 'building',
-        'preview': 'It starts as a gift...',
-        'content': """
-    On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-    I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-    black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-    The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-    """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image': 'static/img/stories/gift-svgrepo-com.xml',
-    },
-    {
-        'name': 'Actenuating Accents',
-        'author': 'Yolanda Smit',
-        'page': 'accents',
-        'preview': "It's hard to listen when all you do is hear...",
-        'content': """
-    On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-    I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-    black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-    The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-    """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image': 'static/img/stories/aa.svg'
-    },
-    {
-        'name': 'Building a Legacy',
-        'author': 'hubby',
-        'page': 'building',
-        'preview': 'It starts as a gift...',
-        'content': """
-    On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-    I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-    black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-    The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-    """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image': 'static/img/stories/gift-svgrepo-com.xml',
-    },
-    {
-        'name': 'Actenuating Accents',
-        'author': 'Yolanda Smit',
-        'page': 'accents',
-        'preview': "It's hard to listen when all you do is hear...",
-        'content': """
-    On Christmas, 2019, this site will be handed over to Chris Smit as a Christmas gift from me, the hubby. 
-    I wanted to build this site to provide a platform for my wife to share her experiences as a strong, kind, beautiful
-    black woman in Engineering. She has so many stories to tell, and I am so excited for her to share them with the world.
-    The site is still in its very early stages, but expect major changes in the first month of 2020. See you next year!
-    """,
-        'posted': '12/6/2019',
-        'edited': None,
-        'image': 'static/img/stories/aa.svg'
-    },
-]
-def get_last_four_articles():
-    return articles[-4:]
+from chrissmit.services.db_models import Article
+from flask_login import current_user
 
-def get_article_data(page):
-    for article in articles:
-        if page == article['page']:
-            return article
-    return {}
+def get_all(desc=True):
+    if desc:
+        return Article.query.order_by(Article.posted.desc()).all()
+    return Article.query.all()
 
-def get_all_articles():
-    return articles
+
+def get_all_released(desc=True):
+    if desc:
+        return Article.query.filter_by(is_released=True).order_by(Article.posted.desc()).all()
+    return Article.query.filter_by(is_released=True).all()
+
+def get_all_ready_for_review(desc=True):
+    if desc:
+        return Article.query.filter_by(is_ready_for_review=True, is_realease=False).order_by(Article.posted.desc()).all()
+    return Article.query.filter_by(is_ready_for_review=True, is_realease=False).all()
+
+def get_last(number=4, desc=True):
+    if desc:
+        return Article.query.filter_by(is_released=True).order_by(Article.posted.desc()).limit(number).all()
+    return Article.query.filter_by(is_released=True).limit(number).all()
+
+def get(id):
+    return Article.query.filter_by(id=id).first()
+
+
+
+def update(form, article):
+    article.title=form.title.data
+    article.content=form.content.data
+    db.session.commit()
+
+def update_form_data(form, update):
+    form.title.data = article.title
+    form.content.data = article.content
+    return form

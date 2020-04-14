@@ -1,7 +1,6 @@
 import flask
 from flask import render_template, url_for, redirect, flash
 from chrissmit.services import profile, article, update
-from chrissmit.services.db_models import User, Post, Update
 from chrissmit.forms.content import UpdatesForm
 from chrissmit import db
 from flask_login import current_user
@@ -13,7 +12,7 @@ blueprint = flask.Blueprint('navigation', __name__, template_folder='templates')
 def index():
     updates_form = UpdatesForm()
     updates = update.get_last(5)
-    last_four = article.get_last_four_articles()
+    last_four = article.get_last(4)
     if updates_form.validate_on_submit() and current_user.is_authenticated:
         new_update = Update(
             title=updates_form.title.data,
@@ -34,7 +33,7 @@ def index():
 
 @blueprint.route('/about')
 def about():
-    last_four = article.get_last_four_articles()
+    last_four = article.get_last(4)
     authors = profile.get_all()
     return render_template(
         template_name_or_list='navigation/about.html',
@@ -46,7 +45,7 @@ def about():
 @blueprint.route('/articles')
 def articles():
     articles = article.get_all_articles()
-    last_four = article.get_last_four_articles()
+    last_four = article.get_last(4)
     return render_template(
         template_name_or_list='navigation/articles.html',
         recent_articles=last_four, 
@@ -55,7 +54,7 @@ def articles():
 
 @blueprint.route('/contact')
 def contact():
-    last_four = article.get_last_four_articles()
+    last_four = article.get_last(4)
     return render_template(
         template_name_or_list='navigation/contact.html',
         recent_articles=last_four, 

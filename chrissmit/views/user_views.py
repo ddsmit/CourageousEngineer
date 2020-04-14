@@ -16,8 +16,9 @@ def login():
         user = profile.get(email=form.email.data)
         if user and profile.is_password_correct(user.password,form.password.data):
             login_user(user, remember=form.remember.data)
-            flash(f'Logged in as {user.username}','success')
-            return redirect(url_for('navigation.index'))
+            next_page = request.args.get('next')
+            flash(f'Logged in as {user.full_name}','success')
+            return redirect(next_page) if next_page else Adredirect(url_for('navigation.index'))
         else:
             flash(f'Something went wrong, please check the email and password.', 'danger')
     return render_template(template_name_or_list='user/login.html', form=form, additional_css='/static/css/forms.css')

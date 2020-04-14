@@ -19,9 +19,9 @@ class UpdateProfile(FlaskForm):
         'Full Name',
         validators=[DataRequired(), Length(min=2,max=50)],
     )
-    user_name = StringField(
-        'User Name',
-        validators=[DataRequired(), Length(min=2,max=50)],
+    linkedin = StringField(
+        'LinkedIn',
+        validators=[DataRequired(), Length(min=2,max=100)],
     )
     email = StringField(
         'Email',

@@ -20,16 +20,16 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                {{ profile_form.user_name.label(class="form-control-lable") }}
-                {% if profile_form.user_name.errors %}
-                    {{ profile_form.user_name(class="form-control form-control-lg is-invalid",) }}
+                {{ profile_form.linkedin.label(class="form-control-lable") }}
+                {% if profile_form.linkedin.errors %}
+                    {{ profile_form.linkedin(class="form-control form-control-lg is-invalid",) }}
                     <div class="invalid-feedback">
                         {%  for error in form.content.errors %}
                             <span> {{ error }}</span>
                         {%  endfor %}
                     </div>
                 {% else %}
-                    {{  profile_form.user_name(class="form-control form-control-lg",) }}
+                    {{  profile_form.linkedin(class="form-control form-control-lg",) }}
                 {% endif %}
             </div>   
             <div class="form-group">
