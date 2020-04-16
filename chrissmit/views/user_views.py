@@ -18,9 +18,10 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             flash(f'Logged in as {user.full_name}','success')
-            return redirect(next_page) if next_page else Adredirect(url_for('navigation.index'))
+            return redirect(next_page) if next_page else redirect(url_for('navigation.index'))
         else:
             flash(f'Something went wrong, please check the email and password.', 'danger')
+    print(current_user.full_name)
     return render_template(template_name_or_list='user/login.html', form=form, additional_css='/static/css/forms.css')
 
 @blueprint.route('/logout')

@@ -4,6 +4,8 @@ from chrissmit import db
 from chrissmit.services import profile, article, update
 from flask_login import current_user, login_required
 
+
+
 blueprint = Blueprint('maintenance', __name__, template_folder='templates')
 
 
@@ -12,14 +14,18 @@ blueprint = Blueprint('maintenance', __name__, template_folder='templates')
 def update_profile():
     profile_form = UpdateProfile()
     if profile_form.validate_on_submit() and current_user.is_authenticated:
-        profile.update(profile_form)
+        picture_filename = profile.save_picture(profile_form.image_file.data)
+        profile.update(profile_form, picture_filename)
         flash('Profile updated','success')
         return redirect(url_for('maintenance.update_profile'))
     elif request.method == 'GET':
+        print(current_user.image_file, 'get')
         profile_form = profile.update_form_data(profile_form)
+    print(current_user.image_file, 'image before render')
     return render_template(
         template_name_or_list=f'maintenance/profile.html', 
         profile_form=profile_form,
+
         )
 
 @blueprint.route('/delete/update/<update_id>')

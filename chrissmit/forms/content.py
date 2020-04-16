@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
+from flask_login import current_user
+from chrissmit.services import profile
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label
-from wtforms.validators import DataRequired, Length, Email, EqualTo 
+from wtforms.validators import DataRequired, Length, Email, EqualTo,ValidationError 
 
 class UpdatesForm(FlaskForm):
     title = StringField(
@@ -31,9 +34,9 @@ class UpdateProfile(FlaskForm):
         'Twitter Handle',
         validators=[DataRequired(),]
     )
-    image_file = StringField(
-        'Image File Name',
-        validators=[DataRequired(),],
+    image_file = FileField(
+        'Choose New Profile Image',
+        validators=[FileAllowed(['svg','png','jpg']),],
     )
     content = TextAreaField(
         'About/Bio',
@@ -41,12 +44,7 @@ class UpdateProfile(FlaskForm):
     )
     submit = SubmitField('Update Profile')
 
-    # id = db.Column(db.Integer, primary_key=True, )
-    # username = db.Column(db.String(20), unique=True, nullable=False, )
-    # full_name = db.Column(db.String(45), unique=False, nullable=False,)
-    # twitter_handle = db.Column(db.String(20), unique=True, nullable=False,)
-    # email = db.Column(db.String(120), unique=True, nullable=False, )
-    # image_file = db.Column(db.String(20), nullable=False, default='default.svg', )
-    # password = db.Column(db.String(60), nullable=False, )
-    # posts = db.relationship('Post', backref='author', lazy=True)
-    # content = db.Column(db.Text, nullable=False)
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            if profile.get(email.data):
+                raise ValidationError("That email is already used.")

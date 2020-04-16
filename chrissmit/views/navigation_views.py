@@ -44,7 +44,7 @@ def about():
 
 @blueprint.route('/articles')
 def articles():
-    articles = article.get_all_articles()
+    articles = article.get_all_released()
     last_four = article.get_last(4)
     return render_template(
         template_name_or_list='navigation/articles.html',
