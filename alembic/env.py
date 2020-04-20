@@ -21,7 +21,6 @@ fileConfig(config.config_file_name)
 import sys
 import os
 folder = os.path.abspath(os.path.join(os.path.dirname(__file__),'..'))
-print(folder)
 sys.path.insert(0, folder)
 from chrissmit import db
 import chrissmit.services.db_models

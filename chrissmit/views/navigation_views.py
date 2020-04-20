@@ -14,13 +14,7 @@ def index():
     updates = update.get_last(5)
     last_four = article.get_last(4)
     if updates_form.validate_on_submit() and current_user.is_authenticated:
-        new_update = Update(
-            title=updates_form.title.data,
-            user_id=current_user.username,
-            content=updates_form.content.data,
-        )
-        db.session.add(new_update)
-        db.session.commit()
+        update.create(updates_form)
         return redirect(url_for('navigation.index'))
 
     return render_template(

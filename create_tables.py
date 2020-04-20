@@ -1,11 +1,11 @@
 from chrissmit import db, bcrypt
-from chrissmit.services.db_models import User, Post, Update
+from chrissmit.services.db_models import User
 
 db.drop_all()
 db.create_all()
 
 yolanda = User(
-    username='chrissmit',
+    authorization_level=bcrypt.generate_password_hash('all_access'),
     full_name='Yolanda Smit',
     twitter_handle='@yoyosmit',
     email='yolanda.smit@courageousengineer.com',
@@ -15,7 +15,7 @@ yolanda = User(
 )
 
 david = User(
-    username='ddsmit',
+    authorization_level=bcrypt.generate_password_hash('all_access'),
     full_name='David Smit',
     twitter_handle='@davidouglasmit',
     email='david.smit@courageousengineer.com',

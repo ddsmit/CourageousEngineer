@@ -48,3 +48,26 @@ class UpdateProfile(FlaskForm):
         if email.data != current_user.email:
             if profile.get(email.data):
                 raise ValidationError("That email is already used.")
+
+
+class ArticleForm(FlaskForm):
+    title = StringField(
+        'Title',
+        validators=[DataRequired(), Length(min=2,max=50)],
+    )
+    preview = StringField(
+        'Article Preview',
+        validators=[DataRequired(), Length(min=2,max=50)],
+    )
+    content = TextAreaField(
+        'Article',
+        validators = [DataRequired()]
+    )
+    image_file = FileField(
+        'Choose Image for Article',
+        validators=[FileAllowed(['svg','png','jpg']),],
+    )
+    save = SubmitField('Save')
+    step_forward = SubmitField('Step Forward')
+    step_backward = SubmitField('Send Back')
+
