@@ -73,7 +73,7 @@
                 <article>
                     <div class="row">
                         <h3 class="float-center">
-                            <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                            <a href="{{ url_for('navigation_views.read_article', article_id=s.id) }}"> {{ s.title }}</a>
                         </h3>
                     </div>
                     <div class="row">
@@ -81,7 +81,7 @@
                     </div>
                     <div class="row">
                         <div class="post_image float-center">
-                            <a href={{ "/articles/" + s.page }}><object type="image/svg+xml" data="{{ s.image }}" width="250"></object></a>
+                            <a href="{{ url_for('navigation_views.read_article', article_id=s.id) }}"><object type="image/svg+xml" data="{{ s.image }}" width="250"></object></a>
                         </div>
                     </div>
                 </article>

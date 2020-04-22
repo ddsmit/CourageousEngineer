@@ -8,9 +8,15 @@ from PIL import Image
 def get_all():
     return User.query.all()
 
+def all_access():
+    return bcrypt.check_password_hash(current_user.authorization_level, 'all_access')
 
-def get(email):
-    return User.query.filter_by(email=email).first()
+
+def get(email=None,id=None):
+    if email:
+        return User.query.filter_by(email=email).first()
+    elif id:
+        return User.query.filter_by(id=id).first()
 
 def is_password_correct(user_password, entered_password):
     return bcrypt.check_password_hash(user_password, entered_password)

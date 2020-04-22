@@ -25,10 +25,13 @@ class User(db.Model, UserMixin):
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    edit_id = db.relationship('ArticleEdits', backref='article', lazy=True) #Used to determine actual displayed content
+    current_edit_id = db.Column(db.Integer, nullable=True) #Used to determine actual displayed content
     is_released = db.Column(db.Boolean, default=False,)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     posted = db.Column(db.DateTime, nullable=True,)
+    title = db.relationship('ArticleEdits', backref=backref('title', lazy=True)
+    preview = db.relationship('ArticleEdits', backref='preview', lazy=True)
+    content = db.relationship('ArticleEdits', backref='content', lazy=True)
 
     def __repr__(self):
         return f'Article(id={self.id},edit_id={self.edit_id},date={self.posted}'
@@ -43,6 +46,7 @@ class ArticleEdits(db.Model):
     edited = db.Column(db.DateTime, nullable=True, default=datetime.utcnow) 
     title = db.Column(db.String(100), nullable=False,)
     preview = db.Column(db.String(200), nullable=False)
+    image_file = db.Column(db.String(100), default='default.png')
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):

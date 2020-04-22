@@ -1,6 +1,7 @@
 from chrissmit.services.db_models import Article, ArticleEdits
 from chrissmit import db, bcrypt
 from flask_login import current_user
+from datetime import datetime
 
 def new_edit(current_edit, current_article):
     return True
@@ -55,6 +56,13 @@ def get_edit(id):
 def ready_for_review(edit):
     edit.is_ready_for_release = True
     edit.is_edited = False
+    db.session.commit()
+
+def release(edit):
+    article = get(edit.article_id)
+    article.posted = datetime.utcnow()
+    article.current_edit_id = edit.id
+    article.is_released = True
     db.session.commit()
 
 def get_all_ready_for_review():

@@ -54,48 +54,79 @@ def create_article():
             )
         elif article_form.step_forward.data:
             article.ready_for_review(edit)
-            flash('Article has been released.', 'success')
+            flash('Article has been released for review.', 'success')
+            return redirect(url_for('navigation_views.view', edit_id = edit.id))
     return render_template(
-        template_name_or_list=f'maintenance/article.html', 
+        template_name_or_list=f'articles/update.html', 
         article_form=article_form,
         current_article=None,
         status_message = 'Create a New Article',
+        step_forward = True,
     )
 
 @blueprint.route('/update/articles/<edit_id>', methods=['GET','POST'])
 @login_required
-def update_article(edit_id):
-    article_form = ArticleForm()
+def update_article(edit_id):    
     #TODO Update the get edit to look for the latest open
     current_edit = article.get_edit(id = edit_id)
     current_article = article.get(id=current_edit.article_id)
-    
-    #If you step an article forward, you will change the status 
-    if article_form.validate_on_submit() and article_form.step_forward.data:
-        article.edit_is_ready_for_release(current_edit, article_form)
-        flash('Article has been released for review','success')
-        #TODO Add different redirect
-        return redirect(url_for('navigation.index'))
+    article_form = ArticleForm()
 
-    #If you access a closed article, you will create a new edit
-    elif current_article.is_released or current_edit.is_ready_for_release:
+    can_step_forward = current_article.author_id == current_user.id
+    can_edit = current_edit.is_edited
+    is_current_user = current_user.id == current_edit.user_id
+
+    if not is_current_user and can_edit:
         article.freeze_edit(current_edit)
         current_edit = article.create_edit_existing(current_edit)
         return redirect(url_for('maintenance.update_article', edit_id=current_edit.id))
+
+    if not can_edit:
+        return redirect(url_for('navigation_views.view', edit_id = current_edit.id))
+
+    if article_form.validate_on_submit():
+        if article_form.step_forward.data:
+            article.update(article_form,current_edit)
+            article.edit_is_ready_for_release(current_edit)
+            flash('Article has been released for review','success')
+            return redirect(url_for('navigation_views.view', edit_id = current_edit.id))
+        elif article_form.save.data:
+            article.update(article_form,current_edit)
+            flash('Changes have been saved.','success')
+            return redirect(url_for('maintenance.update_article', edit_id = current_edit.id))
     
-    #Populate the form for the appropriate article  
     elif request.method == 'GET':
         article_form = article.update_form_data(article_form, current_edit)
     
     return render_template(
-        template_name_or_list=f'maintenance/article.html', 
+        template_name_or_list=f'articles/update.html', 
         article_form=article_form,
         current_article=None,
-        status_message='Edit article.',
-        step_forward_action = 'next_action',
-        step_forward = True
+        status_message='Edit Article',
+        step_forward = can_step_forward
     )
 
+@blueprint.route('/suggestedit/<current_edit_id>')
+@login_required
+def suggest_edit(current_edit_id):
+    current_edit = article.get_edit(current_edit_id)
+    article.freeze_edit(current_edit)
+    current_edit = article.create_edit_existing(current_edit)
+    return redirect(url_for('maintenance.update_article', edit_id=current_edit.id))
+
+@blueprint.route('/release/<current_edit_id>')
+@login_required
+def release_edit(current_edit_id):
+    if not profile.all_access():#add not allowing same user
+        flash('You are not authorized to release articles')
+        return redirect(url_for('navigation_views.view', edit_id=current_edit_id))
+    
+    current_edit = article.get_edit(current_edit_id)
+    article.freeze_edit(current_edit)
+    article.release(current_edit)
+    #Add update for any new article posted with link!
+    #FIx the redirect to go to actual article page
+    return redirect(url_for('navigation_views.view', edit_id=current_edit.id))
 
 @blueprint.route('/read/messages')
 @login_required

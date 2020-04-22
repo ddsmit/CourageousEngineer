@@ -10,13 +10,13 @@
     {%  endif %}
     {% if articles %}
         {%  for s in articles %}
-            <article>
+            
                 <h3>
-                    <a href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                    <a href="{{ url_for('navigation_views.read_article', article_id=s.id) }}"> {{ s.title }}</a>
                 </h3>
                 {{ s.preview }}
-            </article>
         {% endfor %}
+        <h1>articles</h1>
     {% endif %}
 </div>
 {%  endblock %}

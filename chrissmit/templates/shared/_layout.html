@@ -49,7 +49,7 @@
 
                                 <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
                                     {%  for s in recent_articles %}
-                                        <a class="dropdown-item" href={{ "/articles/" + s.page }}> {{ s.title }}</a>
+                                        <a class="dropdown-item" href="{{ url_for('navigation_views.read_article', article_id=s.id) }}"> {{ s.title }}</a>
                                     {% endfor %}
                                     <a class="dropdown-item" href="{{ url_for('navigation.articles') }}">All Articles</a>
                                 </div>
