@@ -1,0 +1,65 @@
+{% extends "shared/_layout.html" %}
+{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block main_content %}
+<div class="main_content">
+    <h2>Articles</h2>
+    <a href="{{ url_for('maintenance.create_article') }}"><h3>Create Article</h3></a>
+    {% if open_edits %}
+        <h3>Open Edits</h3>
+        <ul>
+            {%  for edit in open_edits %}
+                <li>
+                    <a href="{{ url_for('maintenance.update_article', edit_id = edit.id) }}"> {{ edit.title }}</a>
+                    <ul><li>Edited by {{ edit.full_name }} on {{ edit.edited}}</li></ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if open_to_review %}
+        <h3>Open for Review, Not Released</h3>
+        <ul>
+            {%  for edit in open_to_review %}
+                <li>
+                    <a href="{{ url_for('navigation_views.view', edit_id = edit.id) }}"> {{ edit.title }}</a>
+                    <ul>
+                        <li>Edited by {{ edit.user_id }} {{ edit.author_id }} on {{ edit.edited}}</li>
+                    {% if edit.author_id != current_user.id %}
+                        <li>Can Release</li>
+                    {% endif %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if open_to_review %}
+    <h3>Released</h3>
+    <ul>
+        {%  for edit in released %}
+            <li>
+                <a href="{{ url_for('navigation_views.view', edit_id = edit.id) }}"> {{ edit.title }}</a>
+                <ul>
+                    <li>Written by {{ edit.full_name }} on {{ edit.edited}}</li>
+                    <li><a href="{{ url_for('maintenance.archive_article', article_id = edit.id) }}">Archive Article</a></li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>archived edits</h1>
+    {{ archived_edits }}
+    {% if open_to_review %}
+        <h3>Archived Articles</h3>
+        <ul>
+            {%  for edit in archived_articles %}
+                <li>
+                    <a href="{{ url_for('navigation_views.view', edit_id = edit.id) }}"> {{ edit.title }}</a>
+                    <ul>
+                        <li>Written by {{ edit.full_name }} on {{ edit.edited}}</li>
+                        <!-- <li><a href="{{ url_for('maintenance.archive_article', article_id = edit.id) }}">Archive Article</a></li> -->
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{%  endblock %}

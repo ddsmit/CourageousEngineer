@@ -1,9 +1,7 @@
 from chrissmit.services.db_models import User
 from chrissmit import bcrypt, db, app
 from flask_login import current_user
-import secrets
-import pathlib
-from PIL import Image
+
 
 def get_all():
     return User.query.all()
@@ -37,38 +35,3 @@ def update_form_data(form):
     form.image_file.data = current_user.image_file
     form.content.data = current_user.content
     return form
-
-def delete_current_picture():
-    picture_path = pathlib.Path(
-                app.root_path, 
-                'static', 
-                'img', 
-                'authors',
-                current_user.image_file,
-            )
-    if picture_path.exists():
-        picture_path.unlink()
-        
-
-def save_picture(image_file):
-    if image_file:
-        image_hex = secrets.token_hex(8)
-        image_path = pathlib.Path(image_file.filename)
-        file_extension = image_path.suffix
-        new_file_path = pathlib.Path(
-            app.root_path, 
-            'static', 
-            'img', 
-            'authors',
-            image_hex + file_extension,
-        )
-        if file_extension != '.svg':
-            output_size = (500,500)
-            image_file = Image.open(image_file)
-            image_file.thumbnail(output_size)
-        image_file.save(str(new_file_path))            
-        file_name = new_file_path.name
-    else:
-        file_name = current_user.image_file
-    
-    current_user.image_file = file_name

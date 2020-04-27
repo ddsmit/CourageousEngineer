@@ -67,7 +67,7 @@
  
                                  <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
                                      <a class="dropdown-item" href="{{ url_for('maintenance.update_profile') }}">Update Profile</a>
-                                     <a class="dropdown-item" href="#">Add/Edit Article</a>
+                                     <a class="dropdown-item" href="{{ url_for('maintenance.maintain_articles') }}">Add/Edit Article</a>
                                      <a class="dropdown-item" href="{{ url_for('maintenance.read_messages') }}">Read Messages</a>
                                      <a class="dropdown-item" href="/logout">Log Out</a>
                                  </div>

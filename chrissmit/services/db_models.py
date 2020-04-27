@@ -29,17 +29,15 @@ class Article(db.Model):
     is_released = db.Column(db.Boolean, default=False,)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     posted = db.Column(db.DateTime, nullable=True,)
-    title = db.relationship('ArticleEdits', backref=backref('title', lazy=True)
-    preview = db.relationship('ArticleEdits', backref='preview', lazy=True)
-    content = db.relationship('ArticleEdits', backref='content', lazy=True)
+    edited = db.Column(db.DateTime, default = datetime.utcnow, onupdate=datetime.utcnow)
+    all_edits = db.relationship('ArticleEdits', backref='article')
 
     def __repr__(self):
-        return f'Article(id={self.id},edit_id={self.edit_id},date={self.posted}'
-
+        return f'Article(id={self.id},edit_id={self.current_edit_id},date={self.posted}'
 
 class ArticleEdits(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    article_id = db.Column(db.Integer, db.ForeignKey('article.id'), nullable=False,) #used for tracking ongoing changes
+    article_id = db.Column(db.Integer, db.ForeignKey('article.id'), nullable=False,)
     is_edited = db.Column(db.Boolean, default=False,)
     is_ready_for_release = db.Column(db.Boolean, default=False,)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

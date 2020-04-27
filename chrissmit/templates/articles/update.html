@@ -37,6 +37,9 @@
                 <img src="{{ '/static/img/authors/' + current_article.image_file }}" alt="{{ article_form.image_file.data }}">
             {% endif %}
             <div class="row">
+                {% if image_file %}
+                    <img src="{{ '/static/img/articles/' + image_file }}" alt="{{ image_file }}">
+                {% endif %}
                 {{ article_form.image_file.label }}
                 {{ article_form.image_file(class='form-control-file') }}
                 {% if article_form.image_file.errors %}

@@ -12,17 +12,20 @@
         <h2>{{ edit.title }}</h2>
         <div class="row">
             <div class="col-sm-12">
-                <object class="post_image" type="image/svg+xml" data="{{'../../../'+edit.image_file}}"></object>
+                {% if edit.image_file %}
+                    <img src="{{ '/static/img/articles/' + edit.image_file }}" alt="{{ edit.image_file }}">
+                {% endif %}
             </div>
         </div>
         <article>
-            {{ edit.content }}
+            {% for paragraph in edit.content.split('</p>') %}
+                <p >
+                    {{ paragraph }}
+                </p>
+            {% endfor %}
         </article>
         <br>
-        <strong>Posted by </strong> {{ author.full_name }} on {{ article.posted }}
-        <!-- {% if article.edited %}
-            Edited:{{ story.edited }}
-        {% endif %} -->
+        <strong>Posted by </strong> {{ article.full_name }} on {{ article.posted }}
     {% endif %}
     {% if suggest_edit %}
         <h5><h5><a href="/suggestedit/{{ edit.id }}">Suggest an Edit</a></h5>

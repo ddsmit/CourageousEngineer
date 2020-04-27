@@ -7,7 +7,6 @@ from flask_login import current_user
 
 blueprint = flask.Blueprint('navigation', __name__, template_folder='templates')
 
-
 @blueprint.route('/', methods=['GET','POST'])
 def index():
     updates_form = UpdatesForm()
@@ -22,36 +21,36 @@ def index():
         recent_articles=recent_articles, 
         update_form = updates_form, 
         updates=recent_updates,
-        )
+    )
 
 
 @blueprint.route('/about')
 def about():
-    last_four = article.get_last(4)
+    recent_articles = article.get_last(4)
     authors = profile.get_all()
     return render_template(
         template_name_or_list='navigation/about.html',
-        recent_articles=last_four, 
+        recent_articles=recent_articles, 
         authors=authors,
-        )
+    )
 
 
 @blueprint.route('/articles')
 def articles():
     articles = article.get_all_released()
-    last_four = article.get_last(4)
+    recent_articles = article.get_last(4)
     for a in articles:
         print(a.id)
     return render_template(
         template_name_or_list='navigation/articles.html',
-        recent_articles=last_four, 
+        recent_articles=recent_articles, 
         articles=articles,
-        )
+    )
 
 @blueprint.route('/contact')
 def contact():
-    last_four = article.get_last(4)
+    recent_articles = article.get_last(4)
     return render_template(
         template_name_or_list='navigation/contact.html',
-        recent_articles=last_four, 
-        )
+        recent_articles=recent_articles, 
+    )

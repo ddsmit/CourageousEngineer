@@ -1,4 +1,4 @@
-from chrissmit.services.db_models import Article, ArticleEdits
+from chrissmit.services.db_models import Article, ArticleEdits, User
 from chrissmit import db, bcrypt
 from flask_login import current_user
 from datetime import datetime
@@ -6,7 +6,7 @@ from datetime import datetime
 def new_edit(current_edit, current_article):
     return True
 
-def create(form):
+def create(form, image_file = None):
     new_article = Article(
         is_released = False,
         author_id = current_user.id,
@@ -21,6 +21,7 @@ def create(form):
         title = form.title.data,
         preview = form.preview.data,
         content = form.content.data,
+        image_file = image_file,
     )
     db.session.add(new_edit)
     db.session.commit()
@@ -45,6 +46,7 @@ def create_edit_existing(previous_edit):
         title = previous_edit.title,
         preview = previous_edit.preview,
         content = previous_edit.content,
+        image_file = previous_edit.image_file,
     )
     db.session.add(new_edit)
     db.session.commit()
@@ -65,10 +67,6 @@ def release(edit):
     article.is_released = True
     db.session.commit()
 
-def get_all_ready_for_review():
-    pass
-
-
 def get_all(desc=True):
     if desc:
         return Article.query.order_by(Article.posted.desc()).all()
@@ -76,24 +74,91 @@ def get_all(desc=True):
 
 
 def get_all_released(desc=True):
-    if desc:
-        return Article.query.filter_by(is_released=True).order_by(Article.posted.desc()).all()
-    return Article.query.filter_by(is_released=True).all()
+    return get_full_article(filter_criteria = Article.is_released==True)
 
-def get_all_ready_for_review(desc=True):
+def get_all_archived():
+    return get_full_article(
+        filter_criteria = 
+        Article.is_released==False and
+        ArticleEdits.is_edited == False and
+        ArticleEdits.is_ready_for_release==False
+    )
+
+def filters():
+    pass
+
+def get_full_article(filter_criteria, desc=True):
+    full_article = full_article_data()
     if desc:
-        return Article.query.filter_by(is_ready_for_review=True, is_realease=False).order_by(Article.posted.desc()).all()
-    return Article.query.filter_by(is_ready_for_review=True, is_realease=False).all()
+        return full_article.filter(filter_criteria).order_by(Article.posted.desc()).all()
+    return full_article.filter(filter_criteria).all()
+
+def get_open_edits(desc=False, test=False):
+    return get_full_edits(filter_criteria = ArticleEdits.is_edited == True)
+
+def get_open_to_review(desc=False):
+    return get_full_edits(filter_criteria = ArticleEdits.is_ready_for_release == True)
+
+def get_full_edits(filter_criteria, desc=False):
+    full_edit = full_edit_data()
+    if desc:
+        return full_edit.filter(filter_criteria).order_by(ArticleEdits.edited.desc()).all()
+    return full_edit.filter(filter_criteria).all()
 
 def get_last(number=4, desc=True):
+    full_article = full_article_data()
     if desc:
-        return Article.query.filter_by(is_released=True).order_by(Article.posted.desc()).limit(number).all()
-    return Article.query.filter_by(is_released=True).limit(number).all()
+        return full_article.filter(Article.is_released==True).order_by(Article.posted.desc()).limit(number).all()
+    return full_article.filter(Article.is_released==True).limit(number).all()
+
+def full_edit_data():
+    return db.session.query(
+        ArticleEdits.id,
+        ArticleEdits.article_id,
+        ArticleEdits.title, 
+        ArticleEdits.preview, 
+        ArticleEdits.content,
+        ArticleEdits.user_id,
+        ArticleEdits.is_edited,
+        ArticleEdits.is_ready_for_release,
+        ArticleEdits.edited,
+        Article.author_id,
+        Article.id,
+        User.full_name,
+    ).join(
+        Article, 
+        ArticleEdits.article_id == Article.id,
+    ).join(
+        User, 
+        Article.author_id == User.id
+    )
+
+def full_article_data():
+    return db.session.query(
+        Article.id, 
+        Article.posted, 
+        Article.edited, 
+        Article.is_released,
+        Article.author_id,
+        ArticleEdits.title, 
+        ArticleEdits.preview, 
+        ArticleEdits.content,
+        ArticleEdits.user_id,
+        User.full_name,
+    ).join(
+        ArticleEdits, 
+        Article.current_edit_id == ArticleEdits.id,
+    ).join(
+        User, 
+        Article.author_id == User.id
+    )
 
 def get(id):
-    return Article.query.filter_by(id=id).first()
+    full_article = full_article_data()
+    return full_article.filter(Article.id==int(id)).first()
 
-
+def get_article(id):
+    return Article.query.filter(Article.id==int(id)).first()
 
 def update(form, article):
     article.title=form.title.data
@@ -106,3 +171,11 @@ def update_form_data(form, edit):
     form.content.data = edit.content
     form.preview.data = edit.preview
     return form
+
+def archive(article_id):
+    article_to_archive = get_article(article_id)
+    article_to_archive.is_released = False
+    for edit in article_to_archive.all_edits:
+        edit.is_edited = False
+        edit.is_ready_for_release = False
+    db.session.commit()
