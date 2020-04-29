@@ -2,13 +2,13 @@
 {% block title %} {{ edit.preview }}{% endblock %}
 {% block main_content %}
 <div class="main_content">
-    {% if not article %}
+    {% if not edit %}
          <div>
-            Article Not Found!
+            Edit Not Found!
          </div>
     {%  endif %}
 
-    {% if article %}
+    {% if edit %}
         <h2>{{ edit.title }}</h2>
         <div class="row">
             <div class="col-sm-12">
@@ -25,7 +25,7 @@
             {% endfor %}
         </article>
         <br>
-        <strong>Posted by </strong> {{ article.full_name }} on {{ article.posted }}
+        <strong>Posted by </strong> {{ edit.full_name }} on {{ edit.posted }}
     {% endif %}
     {% if suggest_edit %}
         <h5><h5><a href="/suggestedit/{{ edit.id }}">Suggest an Edit</a></h5>

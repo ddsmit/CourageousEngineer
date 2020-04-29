@@ -1,9 +1,69 @@
 {% extends "shared/_layout.html" %}
-{% block title %}About the Legend Herself{% endblock %}
+{% block title %}Say Hello!{% endblock %}
 {% block main_content %}
-    <div class="main_content">
-        <h1>Chris Smit</h1>
-            Email: yolanda@ycsmit.com
-            Phone: 888 888 8888
-    </div>
-{% endblock %}
+<div class="main_content">
+    <h2>Say Hello!</h2>
+    We'd love to hear how we can be better or how we can help. If you'd like to give some constructive feedback, inquire about a mentorship, or join the team, please fill in the information below.
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ contact_form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ contact_form.name.label(class="form-control-lable") }}
+                {% if contact_form.name.errors %}
+                    {{ contact_form.name(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {% for error in contact_form.name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ contact_form.name(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ contact_form.email.label(class="form-control-lable") }}
+                {% if contact_form.email.errors %}
+                    {{ contact_form.email(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {% for error in contact_form.email.errors %}
+                            <span> {{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ contact_form.email(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>   
+            <div class="form-group">
+                {{ contact_form.contact_type.label(class="form-control-lable") }}
+                {% if contact_form.contact_type.errors %}
+                    {{ contact_form.contact_type(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {% for error in contact_form.contact_type.errors %}
+                            <span> {{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ contact_form.contact_type(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ contact_form.content.label(class="form-control-lable") }}
+                {% if contact_form.content.errors %}
+                    {{ contact_form.content(class="form-control form-control-lg is-invalid",) }}
+                    <div class="invalid-feedback">
+                        {% for error in contact_form.content.errors %}
+                            <span> {{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ contact_form.content(class="form-control form-control-lg",) }}
+                {% endif %}
+            </div>      
+        </fieldset>
+        <div class="form-group">
+            {{ contact_form.submit(class="btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+{%  endblock %}

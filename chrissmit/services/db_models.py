@@ -48,7 +48,7 @@ class ArticleEdits(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'Article(title={self.title},preview={self.preview},date={self.edited}, edited={self.is_edited}, ready for release={self.is_ready_for_release}'
+        return f'ArtEditicle(title={self.title},preview={self.preview},date={self.edited}, edited={self.is_edited}, ready for release={self.is_ready_for_release}'
 
 
 class Update(db.Model):
@@ -60,4 +60,24 @@ class Update(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'Post(title={self.title},posted={self.posted}'
+        return f'Update(title={self.title},posted={self.posted}'
+
+class Messages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    contact_type = db.Column(db.String(20), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f'Message from {self.name} about {self.contact_type}: {content}'
+
+class Read(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message_id = db.Column(db.Integer, db.ForeignKey('messages.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f'UserID:{self.user_id} read MessageID:{message_id}'
+
+        

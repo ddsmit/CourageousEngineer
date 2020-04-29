@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from chrissmit.services import profile
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo,ValidationError 
 
 class UpdatesForm(FlaskForm):
@@ -71,3 +71,26 @@ class ArticleForm(FlaskForm):
     step_forward = SubmitField('Step Forward')
     step_backward = SubmitField('Send Back')
 
+class ContactForm(FlaskForm):
+    name = StringField(
+        'Name',
+        validators=[DataRequired(), Length(min=2,max=100)],
+    )
+    email = StringField(
+        'Email',
+        validators=[DataRequired(), Email(), ]
+    )
+    contact_type = SelectField(
+        'Why are you contacting us?',
+        choices=[
+            ('feedback','Feedback'),
+            ('mentoring','Inquire About Mentorship'),
+            ('help','Help'),
+            ('join','I Want to Join the Team'),
+        ]
+    )
+    content = TextAreaField(
+        'Article',
+        validators = [DataRequired()]
+    )
+    submit = SubmitField('Send')

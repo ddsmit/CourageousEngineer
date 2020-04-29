@@ -101,7 +101,7 @@ def update_article(edit_id):
     recent_articles = article.get_last(4)
     #TODO Update the get edit to look for the latest open
     current_edit = article.get_edit(id = edit_id)
-    current_article = article.get(id=current_edit.article_id)
+    current_article = article.get_article(id=current_edit.article_id)
     article_form = ArticleForm()
     can_step_forward = current_article.author_id == current_user.id
     can_edit = current_edit.is_edited
@@ -137,11 +137,19 @@ def update_article(edit_id):
         recent_articles=recent_articles,
         image_file = current_edit.image_file,
     )
+
 @blueprint.route('/archive/article/<article_id>')
 @login_required
 def archive_article(article_id):
     article.archive(article_id)
     flash('Archived article', 'success')
+    return redirect(url_for('maintenance.maintain_articles'))
+
+@blueprint.route('/unarchive/article/<article_id>')
+@login_required
+def unarchive_article(article_id):
+    article.unarchive(article_id)
+    flash('Article has been opened back for editing','success')
     return redirect(url_for('maintenance.maintain_articles'))
 
 @blueprint.route('/suggestedit/<current_edit_id>')
@@ -167,8 +175,9 @@ def release_edit(current_edit_id):
 @login_required
 def read_messages():
     recent_articles = article.get_last(4)
-    profile_form = UpdateProfile()
-    profile_form.email.data = current_user.full_name
+    read_messages = messages.get_read()
+    unread_messages = messages.get_unread()
+    
     return render_template(
         template_name_or_list=f'maintenance/profile.html', 
         profile_form=profile_form,

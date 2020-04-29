@@ -1,7 +1,7 @@
 import flask
 from flask import render_template, url_for, redirect, flash
-from chrissmit.services import profile, article, update
-from chrissmit.forms.content import UpdatesForm
+from chrissmit.services import profile, article, update, messages
+from chrissmit.forms.content import UpdatesForm, ContactForm
 from chrissmit import db
 from flask_login import current_user
 
@@ -15,7 +15,6 @@ def index():
     if updates_form.validate_on_submit() and current_user.is_authenticated:
         update.create(updates_form)
         return redirect(url_for('navigation.index'))
-
     return render_template(
         template_name_or_list='navigation/index.html',
         recent_articles=recent_articles, 
@@ -34,23 +33,26 @@ def about():
         authors=authors,
     )
 
-
 @blueprint.route('/articles')
 def articles():
     articles = article.get_all_released()
     recent_articles = article.get_last(4)
-    for a in articles:
-        print(a.id)
     return render_template(
         template_name_or_list='navigation/articles.html',
         recent_articles=recent_articles, 
         articles=articles,
     )
 
-@blueprint.route('/contact')
+@blueprint.route('/contact', methods=['GET','POST'])
 def contact():
     recent_articles = article.get_last(4)
+    contact_form = ContactForm()
+    if contact_form.validate_on_submit():
+        messages.save(contact_form)
+        flash('Thank you for contacting us! We love the feedback!', 'success')
+        return redirect(url_for('navigation.index'))
     return render_template(
         template_name_or_list='navigation/contact.html',
         recent_articles=recent_articles, 
+        contact_form=contact_form,
     )
