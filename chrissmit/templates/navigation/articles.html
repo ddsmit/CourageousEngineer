@@ -3,11 +3,63 @@
 {% block main_content %}
 <div class="main_content">
     <h2>Articles</h2>
-    {% if not articles %}
-     <div>
-        Nothing has been posted yet, please stay tuned!
-     </div>
-    {%  endif %}
+    {% if recent_articles %}
+    <div class="row">
+        <div id="carouselArticles" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                     <h1 class="float-center">
+                         Welcome!
+                     </h1>
+                     <h2>Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.</h2>
+                </div>
+                <div class="carousel-item">
+                     <h1 class="float-center">
+                         Welcome!
+                     </h1>
+                     <h2>From social biases to doing the right thing when there is massive opposition and potential impact to your career, many of us have had situations that required courage.</h2>
+                 </div>
+                 <div class="carousel-item">
+                     <h1 class="float-center">
+                         Welcome!
+                     </h1>
+                     <h2>Our hope is that sharing these experiences will help others facing these difficult situations in the enigneering world.</h2>
+                 </div>
+                 <div class="carousel-item">
+                     <h1 class="float-center">
+                         Welcome!
+                     </h1>
+                     <h2>Please enjoy the articles, find out more about us, and leave some feedback!</h2>
+                 </div>
+                 {% for article in recent_articles %}
+                     <div class="carousel-item">
+                         <div class="card" style="width: 24 rem;">
+                                 <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}">
+                                     <img class="card-img-top" src="{{ '/static/img/articles/' + article.image_file }}" alt="First slide">
+                                 </a>
+                                 <div class="card-body">
+                                     <h5>{{ article.title }} </h5>
+                                     <p class="card-text">{{ article.preview }}</p>
+                                 </div>
+                             </div>            
+                     </div>
+                 {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselArticles" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselArticles" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+        </div>
+    </div>
+    <br>
+
+
+{% endif %}
+
     {% if articles %}
         {%  for s in articles %}
             

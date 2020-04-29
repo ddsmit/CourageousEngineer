@@ -98,3 +98,16 @@ article {
 .message {
     margin-top: 75px;
 }
+
+.home-carousel {
+    height: 25rem;
+}
+
+.home-carousel h1 {
+    padding-left: 15px;
+}
+
+.home-carousel h2 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
