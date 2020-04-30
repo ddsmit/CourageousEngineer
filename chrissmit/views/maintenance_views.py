@@ -184,3 +184,18 @@ def read_messages():
         unread_messages=unread_messages,
     )
 
+@blueprint.route('/read/message/<message_id>')
+@login_required
+def read_message(message_id):
+    recent_articles = article.get_last(4)
+    is_marked_read = messages.mark_read(message_id)
+    if not is_marked_read:
+        return redirect(url_for('maintenance.read_messages'))
+    else:
+        message = messages.get_message(message_id)
+        return render_template(
+            template_name_or_list='maintenance/message.html',
+            recent_articles=recent_articles,
+            message=message,
+        )
+

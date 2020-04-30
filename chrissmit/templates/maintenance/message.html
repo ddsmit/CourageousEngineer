@@ -1,0 +1,15 @@
+{% extends "shared/_layout.html" %}
+{% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
+{% block main_content %}
+<div class="main_content">
+    {% if message %}
+        <h3>{{ message.title }}</h3>
+        <h4>{{ message.desc }}</h4>
+        <h5>{{ message.name }}, {{ message.email }}</h5>
+        <p> {{ message.content }}</p>
+    {% else %}
+        <h3>There was a problem, the message could not be found.</h3>
+    {% endif %}
+    <a href="{{ url_for('maintenance.read_messages') }}">Go back to the message screen.</a>
+</div>
+{%  endblock %}
