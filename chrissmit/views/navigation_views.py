@@ -47,6 +47,7 @@ def articles():
 def contact():
     recent_articles = article.get_last(4)
     contact_form = ContactForm()
+    contact_form.reason.choices = messages.get_reasons()
     if contact_form.validate_on_submit():
         messages.save(contact_form)
         flash('Thank you for contacting us! We love the feedback!', 'success')

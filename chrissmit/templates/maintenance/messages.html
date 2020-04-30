@@ -2,62 +2,29 @@
 {% block title %}A Peak Into a Big, Beautiful, Black Brain{% endblock %}
 {% block main_content %}
 <div class="main_content">
-    <h2>Articles</h2>
-    <a href="{{ url_for('maintenance.create_article') }}"><h3>Create Article</h3></a>
-    {% if open_edits %}
-        <h3>Open Edits</h3>
-        <ul>
-            {%  for edit in open_edits %}
-                <li>
-                    <a href="{{ url_for('maintenance.update_article', edit_id = edit.id) }}"> {{ edit.title }}</a>
-                    <ul><li>Edited by {{ edit.full_name }} on {{ edit.edited}}</li></ul> # Need to check edited vs author
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if open_to_review %}
-        <h3>Open for Review, Not Released</h3>
-        <ul>
-            {%  for edit in open_to_review %}
-                <li>
-                    <a href="{{ url_for('navigation_views.view', edit_id = edit.id) }}"> {{ edit.title }}</a>
-                    <ul>
-                        <li>Edited by {{ edit.user_id }} {{ edit.author_id }} on {{ edit.edited}}</li> #Need to understand edited vs author
-                    {% if edit.author_id != current_user.id %}
-                        <li>Can Release</li>
-                    {% endif %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if released %}
-    <h3>Released</h3>
-    <ul>
-        {%  for artic in released %}
-            <li>
-                <a href="{{ url_for('navigation_views.view', edit_id = artic.current_edit_id) }}"> {{ artic.title }}</a>
-                <ul>
-                    <li>Written by {{ artic.full_name }} on {{ artic.edited}}</li>
-                    <li><a href="{{ url_for('maintenance.archive_article', article_id = artic.id) }}">Archive Article</a></li>
-                </ul>
-            </li>
+    <h2>Messages</h2>
+    {% if read_messages %}
+        <h3>Unread</h3>
+        {%  for message in unread_messages %}
+        {{ message.id }}
+            <div class="row">
+                <a href="#">
+                    {{ message }}
+                </a>
+            </div>
         {% endfor %}
-    </ul>
     {% endif %}
-    {% if archived_articles %}
-        <h3>Archived Articles</h3>
-        <ul>
-            {%  for artic in archived_articles %}
-                <li>
-                    <a href="{{ url_for('navigation_views.view', edit_id = artic.current_edit_id) }}"> {{ artic.title }}</a>
-                    <ul>
-                        <li>Written by {{ artic.full_name }} on {{ artic.edited}}</li>
-                        <li><a href="{{ url_for('maintenance.unarchive_article', article_id = artic.id) }}">Release archived Article back to Edit</a></li>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    {% if read_messages %}
+    <h3>Read Messages</h3>
+    {%  for message in read_messages %}
+
+        <div class="row">
+            <a href="#">
+                {{ message }}
+            </a>
+        </div>
+    {% endfor %}
+{% endif %}
+  
 </div>
 {%  endblock %}

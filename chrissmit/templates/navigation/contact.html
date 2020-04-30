@@ -34,16 +34,16 @@
                 {% endif %}
             </div>   
             <div class="form-group">
-                {{ contact_form.contact_type.label(class="form-control-lable") }}
-                {% if contact_form.contact_type.errors %}
-                    {{ contact_form.contact_type(class="form-control form-control-lg is-invalid",) }}
+                {{ contact_form.reason.label(class="form-control-lable") }}
+                {% if contact_form.reason.errors %}
+                    {{ contact_form.reason(class="form-control form-control-lg is-invalid",) }}
                     <div class="invalid-feedback">
-                        {% for error in contact_form.contact_type.errors %}
+                        {% for error in contact_form.reason.errors %}
                             <span> {{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ contact_form.contact_type(class="form-control form-control-lg",) }}
+                    {{ contact_form.reason(class="form-control form-control-lg",) }}
                 {% endif %}
             </div>
             <div class="form-group">

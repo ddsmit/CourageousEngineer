@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, request
 from chrissmit.forms.content import UpdateProfile, UpdatesForm, ArticleForm
 from chrissmit import db
-from chrissmit.services import profile, article, update, image
+from chrissmit.services import profile, article, update, image, messages
 from flask_login import current_user, login_required
 
 blueprint = Blueprint('maintenance', __name__, template_folder='templates')
@@ -177,10 +177,10 @@ def read_messages():
     recent_articles = article.get_last(4)
     read_messages = messages.get_read()
     unread_messages = messages.get_unread()
-    
     return render_template(
-        template_name_or_list=f'maintenance/profile.html', 
-        profile_form=profile_form,
+        template_name_or_list=f'maintenance/messages.html', 
         recent_articles=recent_articles,
+        read_messages=read_messages,
+        unread_messages=unread_messages,
     )
 

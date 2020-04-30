@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from chrissmit.services import profile
+from chrissmit.services import profile, messages
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo,ValidationError 
 
@@ -78,16 +78,12 @@ class ContactForm(FlaskForm):
     )
     email = StringField(
         'Email',
-        validators=[DataRequired(), Email(), ]
+        validators=[DataRequired(), Email(), ],
     )
-    contact_type = SelectField(
+    reason = SelectField(
         'Why are you contacting us?',
-        choices=[
-            ('feedback','Feedback'),
-            ('mentoring','Inquire About Mentorship'),
-            ('help','Help'),
-            ('join','I Want to Join the Team'),
-        ]
+        # validate_choice=False,
+        choices=[],
     )
     content = TextAreaField(
         'Article',

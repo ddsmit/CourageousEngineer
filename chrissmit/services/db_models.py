@@ -66,11 +66,18 @@ class Messages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), nullable=False)
-    contact_type = db.Column(db.String(20), nullable=False)
+    reason = db.Column(db.Integer, db.ForeignKey('reasons.id'))
     content = db.Column(db.Text, nullable=False)
 
     def __repr__(self):
-        return f'Message from {self.name} about {self.contact_type}: {content}'
+        return f'Message from {self.name} about {self.reason}: {self.content}'
+
+class Reasons(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    desc = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f'Id:{self.id}, desc:{self.desc}'
 
 class Read(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -78,6 +85,6 @@ class Read(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f'UserID:{self.user_id} read MessageID:{message_id}'
+        return f'UserID:{self.user_id} read MessageID:{self.message_id}'
 
         

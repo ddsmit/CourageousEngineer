@@ -1,5 +1,7 @@
+print(__name__)
+
 from chrissmit import db, bcrypt
-from chrissmit.services.db_models import User
+from chrissmit.services.db_models import User, Reasons
 
 db.drop_all()
 db.create_all()
@@ -26,4 +28,17 @@ david = User(
 
 db.session.add(yolanda)
 db.session.add(david)
+choices=[
+    'Feedback',
+    'Inquire About Mentorship',
+    'Help',
+    'I Want to Join the Team',
+    ]
+
+for choice in choices:
+    new_record = Reasons(
+        desc=choice,
+    )
+    db.session.add(new_record)
+
 db.session.commit()
