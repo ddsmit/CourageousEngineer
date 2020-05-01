@@ -10,58 +10,58 @@
             <div class="form-group">
                 {{ contact_form.name.label(class="form-control-lable") }}
                 {% if contact_form.name.errors %}
-                    {{ contact_form.name(class="form-control form-control-lg is-invalid",) }}
+                    {{ contact_form.name(class="form-control  is-invalid",) }}
                     <div class="invalid-feedback">
                         {% for error in contact_form.name.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ contact_form.name(class="form-control form-control-lg",) }}
+                    {{ contact_form.name(class="form-control ",) }}
                 {% endif %}
             </div>
             <div class="form-group">
                 {{ contact_form.email.label(class="form-control-lable") }}
                 {% if contact_form.email.errors %}
-                    {{ contact_form.email(class="form-control form-control-lg is-invalid",) }}
+                    {{ contact_form.email(class="form-control  is-invalid",) }}
                     <div class="invalid-feedback">
                         {% for error in contact_form.email.errors %}
                             <span> {{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ contact_form.email(class="form-control form-control-lg",) }}
+                    {{ contact_form.email(class="form-control ",) }}
                 {% endif %}
             </div>   
             <div class="form-group">
                 {{ contact_form.reason.label(class="form-control-lable") }}
                 {% if contact_form.reason.errors %}
-                    {{ contact_form.reason(class="form-control form-control-lg is-invalid",) }}
+                    {{ contact_form.reason(class="form-control  is-invalid",) }}
                     <div class="invalid-feedback">
                         {% for error in contact_form.reason.errors %}
                             <span> {{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ contact_form.reason(class="form-control form-control-lg",) }}
+                    {{ contact_form.reason(class="form-control ",) }}
                 {% endif %}
             </div>
             <div class="form-group">
                 {{ contact_form.content.label(class="form-control-lable") }}
                 {% if contact_form.content.errors %}
-                    {{ contact_form.content(class="form-control form-control-lg is-invalid",) }}
+                    {{ contact_form.content(class="form-control is-invalid",) }}
                     <div class="invalid-feedback">
                         {% for error in contact_form.content.errors %}
                             <span> {{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ contact_form.content(class="form-control form-control-lg",) }}
+                    {{ contact_form.content(class="form-control ",) }}
                 {% endif %}
             </div>      
         </fieldset>
         <div class="form-group">
-            {{ contact_form.submit(class="btn-outline-info") }}
+            {{ contact_form.submit(class="btn btn-primary") }}
         </div>
     </form>
 </div>

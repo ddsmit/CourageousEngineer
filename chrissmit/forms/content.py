@@ -3,7 +3,7 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from chrissmit.services import profile, messages
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo,ValidationError 
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL 
 
 class UpdatesForm(FlaskForm):
     title = StringField(
@@ -24,7 +24,7 @@ class UpdateProfile(FlaskForm):
     )
     linkedin = StringField(
         'LinkedIn',
-        validators=[DataRequired(), Length(min=2,max=100)],
+        validators=[DataRequired(), Length(min=2,max=100), URL()],
     )
     email = StringField(
         'Email',
@@ -78,7 +78,7 @@ class ContactForm(FlaskForm):
     )
     email = StringField(
         'Email',
-        validators=[DataRequired(), Email(), ],
+        validators=[DataRequired(), Email(),],
     )
     reason = SelectField(
         'Why are you contacting us?',

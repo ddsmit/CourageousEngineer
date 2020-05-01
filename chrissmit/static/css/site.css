@@ -111,3 +111,12 @@ article {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.btn {
+    background-color: #186262;
+}
+
+.btn:hover {
+    background-color: #186262;
+    opacity: 70%;
+}
