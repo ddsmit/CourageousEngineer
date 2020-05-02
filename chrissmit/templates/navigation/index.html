@@ -1,39 +1,36 @@
 {% extends "shared/_layout.html" %}
 {% block title %}The courage to do the right thing{% endblock %}
 {% block main_content %}
-<div class="main_content row">
-<div class="col-lg">
-    <div class="row">
-        <h1>Welcome!</h1>
-        <div id="carouselArticles" class="carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner home-carousel">
-                <div class="carousel-item active">
-                    <h2>Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.</h2>
-                </div>
-                <div class="carousel-item">
-                    <h2>From social biases to doing the right thing when there is opposition, many of us have had situations that required courage.</h2>
-                </div>
-                <div class="carousel-item">
-                    <h2>Our hope is that sharing these experiences will help others facing these difficult situations in the engineering world.</h2>
-                </div>
-                <div class="carousel-item">
-                    <h2>Please enjoy the
-                        <a href="/articles">articles</a>
-                        , find out more 
-                        <a href="/about"> about us </a>
-                        , and leave some 
-                        <a href="/contact"> feedback! </a>
-                    </h2>
-                </div>
-            <a class="carousel-control-prev" href="#carouselArticles" role="button" data-slide="prev">
-                <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselArticles" role="button" data-slide="next">
-                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+<div class="row">
+    <h1>Welcome!</h1>
+    <div id="carouselArticles" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner home-carousel">
+            <div class="carousel-item active">
+                <h2>Courageous Engineer is a platform for people to share their expereiences in the engineering field that required courage.</h2>
+            </div>
+            <div class="carousel-item">
+                <h2>From social biases to doing the right thing when there is opposition, many of us have had situations that required courage.</h2>
+            </div>
+            <div class="carousel-item">
+                <h2>Our hope is that sharing these experiences will help others facing these difficult situations in the engineering world.</h2>
+            </div>
+            <div class="carousel-item">
+                <h2>Please enjoy the
+                    <a href="/articles">articles</a>
+                    , find out more 
+                    <a href="/about"> about us </a>
+                    , and leave some 
+                    <a href="/contact"> feedback! </a>
+                </h2>
+            </div>
+        <a class="carousel-control-prev" href="#carouselArticles" role="button" data-slide="prev">
+            <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselArticles" role="button" data-slide="next">
+            <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </div>
 {%  endblock %}

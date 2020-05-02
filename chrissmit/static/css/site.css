@@ -1,34 +1,49 @@
+:root {
+    --backgroundColor: lightgrey;
+    --primaryFontColor: rgba(80,80,80,1);
+    --navBackgroundColor: rgba(80,80,80,0.8);
+    --navDropDownBackgroundColor: rgba(80,80,80,0.6);
+    --navDropDownText: lightgrey;
+    --lightAccent:  #6FC7C7;
+    --darkAccent:  #186262;
+}
+
 title {
     font-weight: bold;
 }
 html {
-    background-color: lightgray;
+    background-color: var(--backgroundColor);
 }
 
 body {
-    background-color: lightgray;
+    background-color: var(--backgroundColor);
 }
 
 .main_content {
-    margin-top: 100px;
-    color: rgba(80,80,80,1);
-    background-color: lightgray;
-    border: 2px
+    margin-top: 160px;
+    color: var(--primaryFontColor);
+    background-color: var(--backgroundColor);
+    border: 2px;
     height: 100%;
 }
 
 h1 {
-    color: rgba(80,80,80,0.80);
+    color: var(--primaryFontColor);
 }
 
 h2 {
-    color: rgba(80,80,80,0.80);
+    color: var(--primaryFontColor);
     padding-top: 10px;
     padding-bottom: 10px;
 }
 
+p {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 .nav-outer {
-    background-color: rgba(80,80,80,0.80);
+    background-color: var(--navBackgroundColor);
     width: 100%;
 }
 
@@ -40,34 +55,24 @@ nav {
 
 .nav-link {
 
-    color: #6FC7C7;
+    color: var(--lightAccent);
     text-align: left;
     margin-left: auto;
     margin-right: 0px;
     width: 100%
 }
 
-.dropdown-menu {
-  background-color: rgba(0,0,0,0)
-}
-
 .nav-link a:hover {
     opacity: 50%;
-    color: #6FC7C7;
+    color: var(--lightAccent);
 }
 
 a {
-    color: #186262;
+    color: var(--darkAccent);
 }
 a:hover {
     opacity: 50%;
-    color: #186262;
-}
-
-article {
-    border-width: 3px;
-    border-color: rgba(80,80,80,0.6);
-    padding: 30px;
+    color: var(--darkAccent);
 }
 
 #logo {
@@ -75,15 +80,15 @@ article {
 }
 
 #article-drop {
-  background-color:   rgba(80,80,80,0.6);
+  background-color: var(--navDropDownBackgroundColor);
 }
 
 .dropdown-item {
-    color: lightgrey;
+    color: var(--navDropDownText);
 }
 
 .dropdown-item:active {
-  background-color: #186262;
+  background-color: var(--darkAccent);
 }
 
 .collapse.show {
@@ -104,7 +109,7 @@ article {
 }
 
 .home-carousel {
-    height: 25rem;
+    height: 23rem;
 }
 
 .home-carousel h1 {
@@ -117,15 +122,33 @@ article {
 }
 
 .btn {
-    background-color: #186262;
+    background-color: var(--darkAccent);
 }
 
 .btn:hover {
-    background-color: #186262;
+    background-color: var(--darkAccent);
     opacity: 70%;
 }   
 
 .btn:active {
-    border-color: rgba(80,80,80,0.6);
+    border-color: var(--navDropDownBackgroundColor);
 
+}
+
+.form-control {
+    border-color: var(--darkAccent);
+}
+
+.form-control:focus {
+    border-color: var(--darkAccent);
+    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
+}
+
+select:active, select:hover {
+    background-color: var(--darkAccent);
+    color: var(--navDropDownText)
+  }
+
+#content {
+    height: 18rem;
 }
