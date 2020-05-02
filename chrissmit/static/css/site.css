@@ -78,6 +78,10 @@ article {
   background-color:   rgba(80,80,80,0.6);
 }
 
+.dropdown-item {
+    color: lightgrey;
+}
+
 .dropdown-item:active {
   background-color: #186262;
 }
@@ -119,4 +123,9 @@ article {
 .btn:hover {
     background-color: #186262;
     opacity: 70%;
+}   
+
+.btn:active {
+    border-color: rgba(80,80,80,0.6);
+
 }
