@@ -104,10 +104,6 @@ a:hover {
     width: 60%;
 }
 
-.message {
-    margin-top: 75px;
-}
-
 .home-carousel {
     height: 23rem;
 }
@@ -123,6 +119,13 @@ a:hover {
 
 .btn {
     background-color: var(--darkAccent);
+    border-color: var(--darkAccent);
+}
+
+.btn:focus {
+    background-color: var(--darkAccent);
+    border-color: var(--darkAccent);
+    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
 }
 
 .btn:hover {
@@ -130,9 +133,11 @@ a:hover {
     opacity: 70%;
 }   
 
-.btn:active {
+.btn:not(:disabled):not(:disabled):active  {
+    background-color: var(--darkAccent);
     border-color: var(--navDropDownBackgroundColor);
-
+    opacity: 60%;
+    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
 }
 
 .form-control {
@@ -144,9 +149,19 @@ a:hover {
     box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
 }
 
-select:active, select:hover {
+#reason option:hover,
+#reason option:focus,
+#reason option:active {
+    outline: none;
+}
+
+#reason option:hover,
+#reason option:focus,
+#reason option:active {
     background-color: var(--darkAccent);
-    color: var(--navDropDownText)
+    outline: var(--darkAccent);
+    color: var(--navDropDownText);
+    box-shadow: inset 20px 20px var(--darkAccent);
   }
 
 #content {
