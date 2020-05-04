@@ -1,40 +1,39 @@
 {% extends "shared/_layout.html" %}
 {% block title %} {{ edit.preview }}{% endblock %}
 {% block main_content %}
-<div class="main_content">
-    {% if not edit %}
-         <div>
-            Edit Not Found!
-         </div>
-    {%  endif %}
-
-    {% if edit %}
-        <h2>{{ edit.title }}</h2>
-        <div class="row">
-            <div class="col-sm-12">
-                {% if edit.image_file %}
-                    <img src="{{ '/static/img/articles/' + edit.image_file }}" alt="{{ edit.image_file }}">
-                {% endif %}
-            </div>
+{% if not edit %}
+        <div>
+        Edit Not Found!
         </div>
-        <article>
-            {% for paragraph in edit.content.split('</p>') %}
-                <p >
-                    {{ paragraph }}
-                </p>
-            {% endfor %}
-        </article>
-        <br>
-        <strong>Posted by </strong> {{ edit.full_name }} on {{ edit.posted }}
-    {% endif %}
-    {% if suggest_edit %}
-        <h5><h5><a href="/suggestedit/{{ edit.id }}">Suggest an Edit</a></h5>
-    {% endif %}
-    {% if release %}
-        <h5><a href="/release/{{ edit.id }}">Release the Article</a></h5>
-    {% endif %}
-    {% if go_to_latest %}
-        <h5>a href="#">Go to Latest Edit</a></h5>
-    {% endif %}
-</div>
+{%  endif %}
+
+{% if edit %}
+    <h2>{{ edit.title }}</h2>
+    <div class="row">
+        <div class="col-sm-12">
+            {% if edit.image_file %}
+                <img src="{{ '/static/img/articles/' + edit.image_file }}" alt="{{ edit.image_file }}">
+            {% endif %}
+        </div>
+    </div>
+    <article>
+        {% for paragraph in edit.content.split('</p>') %}
+            <p >
+                {{ paragraph }}
+            </p>
+        {% endfor %}
+    </article>
+    <br>
+    <strong>Posted by </strong> {{ edit.full_name }} on {{ edit.posted }}
+{% endif %}
+{% if suggest_edit %}
+    <h5><h5><a href="/suggestedit/{{ edit.id }}">Suggest an Edit</a></h5>
+{% endif %}
+{% if release %}
+    <h5><a href="/release/{{ edit.id }}">Release the Article</a></h5>
+{% endif %}
+{% if go_to_latest %}
+    <h5>a href="#">Go to Latest Edit</a></h5>
+{% endif %}
+
 {%  endblock %}
