@@ -46,6 +46,7 @@ class ArticleEdits(db.Model):
     preview = db.Column(db.String(200), nullable=False)
     image_file = db.Column(db.String(100), default='default.png')
     content = db.Column(db.Text, nullable=False)
+    tags = db.relationship('EditTags', backref='edit')
 
     def __repr__(self):
         return f'ArtEditicle(title={self.title},preview={self.preview},date={self.edited}, edited={self.is_edited}, ready for release={self.is_ready_for_release}'
@@ -78,6 +79,19 @@ class Reasons(db.Model):
 
     def __repr__(self):
         return f'Id:{self.id}, desc:{self.desc}'
+
+class Tags(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    desc = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return f'Id:{self.id}, desc:{self.desc}'
+
+class EditTags(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    edit_id = db.Column(db.Integer, db.ForeignKey('article_edits.id'))
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
+
 
 class Read(db.Model):
     id = db.Column(db.Integer, primary_key=True)

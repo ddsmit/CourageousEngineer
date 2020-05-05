@@ -48,6 +48,19 @@
             {% endif %}
         </div>
         <div class="form-group">
+            {{ article_form.tags.label(class="form-control-lable") }}
+            {% if article_form.tags.errors %}
+                {{ article_form.tags(class="form-control form-control-lg is-invalid", rows=6, multiple=True) }}
+                <div class="invalid-feedback">
+                    {% for error in article_form.tags.errors %}
+                        <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+            {{ article_form.tags(class="form-control form-control-lg", rows=6, multiple=True) }}
+            {% endif %}
+        </div>   
+        <div class="form-group">
             {{ article_form.content.label(class="form-control-lable") }}
             {% if article_form.content.errors %}
                 {{ article_form.content(class="form-control form-control-lg is-invalid",) }}

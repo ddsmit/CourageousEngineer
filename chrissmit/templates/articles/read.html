@@ -25,6 +25,10 @@
     </article>
     <br>
     <strong>Posted by </strong> {{ edit.full_name }} on {{ edit.posted }}
+    <br>
+    {% for tag in tags %}
+        <a href="{{ url_for('navigation_views.by_tag',tag=tag.tag_id) }}" class="tag"> {{ tag.desc }}</a> 
+    {% endfor %}
 {% endif %}
 {% if suggest_edit %}
     <h5><h5><a href="/suggestedit/{{ edit.id }}">Suggest an Edit</a></h5>

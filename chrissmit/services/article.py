@@ -1,4 +1,4 @@
-from chrissmit.services.db_models import Article, ArticleEdits, User
+from chrissmit.services.db_models import Article, ArticleEdits, User, Tags, EditTags
 from chrissmit import db, bcrypt
 from flask_login import current_user
 from datetime import datetime
@@ -22,7 +22,18 @@ def create(form, image_file = None):
     )
     db.session.add(new_edit)
     db.session.commit()
+    create_edit_tags(edit_id=new_edit.id, form=form)
     return new_edit
+
+def create_edit_tags(edit_id, form):
+    for tag in form.tags.data:
+        new_record = EditTags(
+            edit_id = edit_id,
+            tag_id = int(tag),
+        )
+        db.session.add(new_record)
+    db.session.commit()
+
 
 def get_edit(id):
     return ArticleEdits.query.filter_by(id=int(id)).first()
@@ -73,11 +84,39 @@ def get_last(number=4, desc=True):
         return full_article.filter(Article.is_released==True).order_by(Article.posted.desc()).limit(number).all()
     return full_article.filter(Article.is_released==True).limit(number).all()
 
-def update(form, article):
-    article.title=form.title.data
-    article.preview=form.preview.data
-    article.content=form.content.data
+def get_tags():
+    all_tags = Tags.query.all()
+    return [
+        (str(tag.id), tag.desc) 
+        for tag in all_tags
+    ]
+
+def get_edit_tags(edit_id):
+    return db.session.query(EditTags.tag_id, Tags.desc).join(
+        Tags,
+        Tags.id == EditTags.tag_id and
+        EditTags.edit_id == edit_id
+    ).all()
+
+def get_by_tag(tag):
+    edit_id_by_tag = db.session.query(
+        EditTags.edit_id
+    ).filter(
+        EditTags.tag_id == tag
+    )
+    return get_full_article(
+        filter_criteria = ArticleEdits.id.in_(edit_id_by_tag)
+    )
+
+
+def update_edit(form, edit):
+    edit.title=form.title.data
+    edit.preview=form.preview.data
+    edit.content=form.content.data
     db.session.commit()
+    delete_tags(edit.id)
+    create_edit_tags(edit.id, form)
+
 
 def update_form_data(form, edit):
     form.title.data = edit.title
@@ -136,6 +175,10 @@ def create_edit_existing(previous_edit):
     db.session.add(new_edit)
     db.session.commit()
     return new_edit
+
+def delete_tags(edit_id):
+    tags = EditTags.query.filter_by(edit_id=edit_id).delete()
+    db.session.commit()
 
 def full_edit_data():
     fields = full_data_fields()

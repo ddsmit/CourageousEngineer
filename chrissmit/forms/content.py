@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from chrissmit.services import profile, messages
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL 
 
 class UpdatesForm(FlaskForm):
@@ -66,6 +66,10 @@ class ArticleForm(FlaskForm):
     image_file = FileField(
         'Choose Image for Article',
         validators=[FileAllowed(['svg','png','jpg']),],
+    )
+    tags = SelectMultipleField(
+        'Tags',
+        choices=[],
     )
     save = SubmitField('Save')
     step_forward = SubmitField('Step Forward')

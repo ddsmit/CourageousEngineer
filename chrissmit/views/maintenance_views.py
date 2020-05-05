@@ -74,6 +74,10 @@ def update_update(update_id):
 def create_article():
     recent_articles = article.get_last(4)
     article_form = ArticleForm()
+    tags=article.get_tags()
+    article_form.tags.choices = tags
+    article_form.rows = len(tags)
+    article_form.multiple = True
     if article_form.validate_on_submit():
         if article_form.image_file.data:
             image_file = image.save(article_form.image_file.data, 'articles')
@@ -103,31 +107,40 @@ def update_article(edit_id):
     current_edit = article.get_edit(id = edit_id)
     current_article = article.get_article(id=current_edit.article_id)
     article_form = ArticleForm()
+    tags=article.get_tags()
+    article_form.tags.choices = tags
     can_step_forward = current_article.author_id == current_user.id
     can_edit = current_edit.is_edited
     is_current_user = current_user.id == current_edit.user_id
+    
     if not is_current_user and can_edit:
         article.freeze_edit(current_edit)
         current_edit = article.create_edit_existing(current_edit)
         return redirect(url_for('maintenance.update_article', edit_id=current_edit.id))
+    
     if not can_edit:
         return redirect(url_for('navigation_views.view', edit_id = current_edit.id))
+    
     if article_form.validate_on_submit():
         if article_form.image_file.data:
             image.delete(current_edit.image_file,'articles')
             current_edit.image_file = image.save(article_form.image_file.data, 'articles')
+        article.update_edit(article_form,current_edit)
+        
         if article_form.step_forward.data:
-            article.update(article_form,current_edit)
             article.edit_is_ready_for_release(current_edit)
             flash('Article has been released for review','success')
             return redirect(url_for('maintenance.maintain_articles', edit_id = current_edit.id))
         elif article_form.save.data:
-            article.update(article_form,current_edit)
             flash('Changes have been saved.','success')
             return redirect(url_for('maintenance.update_article', edit_id = current_edit.id))
+    
     elif request.method == 'GET':
         article_form = article.update_form_data(article_form, current_edit)
-    
+        default_tags = [str(tag.tag_id) for tag in current_edit.tags]
+        article_form.tags.data = default_tags
+        article_form.rows = len(tags)
+        article_form.multiple = True
     return render_template(
         template_name_or_list=f'articles/update.html', 
         article_form=article_form,
