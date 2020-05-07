@@ -9,13 +9,13 @@ blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templ
 @blueprint.route('/articles/<article_id>')
 def read_article(article_id):
     recent_articles = article.get_last(4)
-    current_article = article.get_article(article_id)
-    current_edit = article.get_edit(current_article.current_edit_id)
-    tags = article.get_edit_tags(current_edit.id)
+    current_article = article.get_full_article(article_id)
+    # current_edit = article.get_edit(current_article.current_edit_id)
+    tags = article.get_edit_tags(current_article.current_edit_id)
     return render_template(
         template_name_or_list='articles/read.html',
-        article=current_article,
-        edit = current_edit,
+        content=current_article,
+        # edit = current_edit,
         release=False,
         suggest_edit=current_user.is_authenticated,
         go_to_latest = False,
@@ -27,18 +27,20 @@ def read_article(article_id):
 @login_required
 def view(edit_id):
     recent_articles = article.get_last(4)
-    current_edit = article.get_edit(edit_id)
-    current_article = article.get_article(current_edit.article_id)
+    current_edit = article.get_full_edit(edit_id)
+    # current_article = article.get_article(current_edit.article_id)
     tags = article.get_edit_tags(current_edit.id)
-    can_release = profile.all_access() and current_user.id != current_article.author_id and current_edit.is_ready_for_release 
+    can_release = profile.all_access() and current_user.id != current_edit.author_id and current_edit.is_ready_for_release 
     return render_template(
         template_name_or_list='articles/read.html',
-        edit = current_edit,
+        content = current_edit,
+        # article = current_article,
         release=can_release,
         suggest_edit=current_user.is_authenticated,
         go_to_latest = False,
         recent_articles=recent_articles,
         tags=tags,
+        display_posted =current_edit.posted > current_edit.edited,
     )
 
 @blueprint.route('/articles/<tag>')

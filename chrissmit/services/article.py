@@ -34,6 +34,17 @@ def create_edit_tags(edit_id, form):
         db.session.add(new_record)
     db.session.commit()
 
+def create_edit_tags_existing(previous_edit, new_edit):
+    existing_tags = EditTags.query.filter_by(edit_id = previous_edit.id).all()
+    for tag in existing_tags:
+        print('tag-',tag.id,'edit', new_edit.id)
+        new_record = EditTags(
+            edit_id = new_edit.id,
+            tag_id = int(tag.tag_id)
+        )
+        db.session.add(new_record)
+    db.session.commit()
+
 
 def get_edit(id):
     return ArticleEdits.query.filter_by(id=int(id)).first()
@@ -92,9 +103,13 @@ def get_tags():
     ]
 
 def get_edit_tags(edit_id):
-    return db.session.query(EditTags.tag_id, Tags.desc).join(
+    print(edit_id)
+    return db.session.query(
+        EditTags.tag_id, Tags.desc
+    ).join(
         Tags,
-        Tags.id == EditTags.tag_id and
+        Tags.id == EditTags.tag_id
+    ).filter(
         EditTags.edit_id == edit_id
     ).all()
 
@@ -174,6 +189,7 @@ def create_edit_existing(previous_edit):
     )
     db.session.add(new_edit)
     db.session.commit()
+    create_edit_tags_existing(previous_edit,new_edit)
     return new_edit
 
 def delete_tags(edit_id):
@@ -220,3 +236,16 @@ def full_data_fields():
         Article.author_id,
         User.full_name,
     )
+
+def add_commas(tags):
+    ids = [tag.tag_id for tag in tags]
+    descs = [tag.desc for tag in tags]
+    descs = ',-'.join(descs)
+    descs = descs.split('-')
+    return [
+        {
+            'tag_id':tag[0],
+            'desc':tag[1],
+        }
+        for tag in zip(ids,descs)
+    ]
