@@ -9,7 +9,7 @@
         {%  for edit in open_edits %}
             <li>
                 <a href="{{ url_for('maintenance.update_article', edit_id = edit.id) }}"> {{ edit.title }}</a>
-                <ul><li>Edited by {{ edit.full_name }} on {{ edit.edited}}</li></ul> # Need to check edited vs author
+                <ul><li>Edited by {{ edit.full_name }} on {{ edit.edited}}</li></ul>
             </li>
         {% endfor %}
     </ul>
@@ -21,7 +21,7 @@
             <li>
                 <a href="{{ url_for('navigation_views.view', edit_id = edit.id) }}"> {{ edit.title }}</a>
                 <ul>
-                    <li>Edited by {{ edit.user_id }} {{ edit.author_id }} on {{ edit.edited}}</li> #Need to understand edited vs author
+                    <li>Edited by {{ edit.full_name }} on {{ edit.edited}}</li>
                 {% if edit.author_id != current_user.id %}
                     <li>Can Release</li>
                 {% endif %}
@@ -38,7 +38,7 @@
             <a href="{{ url_for('navigation_views.view', edit_id = artic.current_edit_id) }}"> {{ artic.title }}</a>
             <ul>
                 <li>Written by {{ artic.full_name }} on {{ artic.edited}}</li>
-                <li><a href="{{ url_for('maintenance.archive_article', article_id = artic.id) }}">Archive Article</a></li>
+                <li><a href="{{ url_for('maintenance.archive_article', article_id = artic.article_id) }}">Archive Article</a></li>
             </ul>
         </li>
     {% endfor %}
@@ -49,10 +49,10 @@
     <ul>
         {%  for artic in archived_articles %}
             <li>
-                <a href="{{ url_for('navigation_views.view', edit_id = artic.current_edit_id) }}"> {{ artic.title }}</a>
+                <a href="{{ url_for('navigation_views.view', edit_id = artic.id) }}"> {{ artic.title }}</a>
                 <ul>
                     <li>Written by {{ artic.full_name }} on {{ artic.edited}}</li>
-                    <li><a href="{{ url_for('maintenance.unarchive_article', article_id = artic.id) }}">Release archived Article back to Edit</a></li>
+                    <li><a href="{{ url_for('maintenance.unarchive_article', article_id = artic.article_id) }}">Release archived Article back to Edit</a></li>
                 </ul>
             </li>
         {% endfor %}

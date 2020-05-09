@@ -119,7 +119,7 @@ def get_by_tag(tag):
     ).filter(
         EditTags.tag_id == tag
     )
-    return get_full_article(
+    return get_full_articles(
         filter_criteria = ArticleEdits.id.in_(edit_id_by_tag)
     )
 
@@ -203,7 +203,7 @@ def full_edit_data():
         ArticleEdits.article_id == Article.id,
     ).join(
         User, 
-        Article.author_id == User.id
+        ArticleEdits.user_id == User.id
     )
 
 def full_article_data():
@@ -249,3 +249,8 @@ def add_commas(tags):
         }
         for tag in zip(ids,descs)
     ]
+
+def is_display_posted(content):
+    if not content.posted:
+        return content.posted
+    return content.posted > content.edited

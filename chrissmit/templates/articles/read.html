@@ -27,6 +27,9 @@
     {% if display_posted %}
     <strong>Posted by {{ content.full_name }}</strong> on 
         {{ content.posted.strftime('%m/%d/%Y') }}
+    {% else %}
+        <strong>Edited by {{ content.full_name }}</strong> on 
+        {{ content.edited.strftime('%m/%d/%Y') }}
     {% endif %}
     <div class="row">
         {% for tag in tags %}
@@ -35,10 +38,10 @@
     </div>
 {% endif %}
 {% if suggest_edit %}
-    <h5><h5><a href="/suggestedit/{{ content.current_edit_id }}">Suggest an Edit</a></h5>
+    <h5><h5><a href="/suggestedit/{{ content.id }}">Suggest an Edit</a></h5>
 {% endif %}
 {% if release %}
-    <h5><a href="/release/{{ content.current_edit_id }}">Release the Article</a></h5>
+    <h5><a href="/release/{{ content.id }}">Release the Article</a></h5>
 {% endif %}
 {% if go_to_latest %}
     <h5>a href="#">Go to Latest Edit</a></h5>
