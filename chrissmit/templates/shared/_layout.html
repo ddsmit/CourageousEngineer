@@ -51,7 +51,7 @@
                                     {%  for s in recent_articles %}
                                         <a class="dropdown-item" href="{{ url_for('navigation_views.read_article', article_id=s.article_id) }}"> {{ s.title }}</a>
                                     {% endfor %}
-                                    <a class="dropdown-item" href="{{ url_for('navigation.articles') }}">All Articles</a>
+                                    <a class="dropdown-item" href="{{ url_for('navigation_views.all_articles') }}">All Articles</a>
                                 </div>
                               </div>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.contact') }}">Contact</a></li>

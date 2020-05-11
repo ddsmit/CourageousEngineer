@@ -33,16 +33,6 @@ def about():
         authors=authors,
     )
 
-@blueprint.route('/articles')
-def articles():
-    articles = article.get_all_released()
-    recent_articles = article.get_last(4)
-    return render_template(
-        template_name_or_list='navigation/articles.html',
-        recent_articles=recent_articles, 
-        articles=articles,
-    )
-
 @blueprint.route('/contact', methods=['GET','POST'])
 def contact():
     recent_articles = article.get_last(4)

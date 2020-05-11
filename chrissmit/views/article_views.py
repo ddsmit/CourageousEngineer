@@ -44,16 +44,30 @@ def view(edit_id):
         display_posted = article.is_display_posted(current_edit),
     )
 
-@blueprint.route('/tags/<tag>')
-def by_tag(tag):
+@blueprint.route('/articles/tag/<tag>')
+def article_by_tag(tag):
     recent_articles = article.get_last(4)
     articles = article.get_by_tag(tag)
-    # TODO Create page for displaying articles (or use the articles page)
-    # TODO create the query to pul in the articles
+    tags = article.get_tags()
     return render_template(
         template_name_or_list='navigation/articles.html',
         recent_articles=recent_articles, 
         articles=articles,
+        tags=tags,
+        current_tags=tag,
+    )
+
+@blueprint.route('/articles')
+def all_articles():
+    recent_articles = article.get_last(4)
+    articles = article.get_all_released()
+    tags = article.get_tags()
+    return render_template(
+        template_name_or_list='navigation/articles.html',
+        recent_articles=recent_articles, 
+        articles=articles,
+        tags=tags,
+        current_tags=[],
     )
 
         

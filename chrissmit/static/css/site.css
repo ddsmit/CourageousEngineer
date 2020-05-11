@@ -172,3 +172,10 @@ a:hover {
 #content {
     height: 18rem;
 }
+
+.article-card {
+    background-color: var(--backgroundColor);
+    border-color: var(--darkAccent);
+    border-width: 2px;
+    margin: 15 px;
+}

@@ -33,7 +33,7 @@
     {% endif %}
     <div class="row">
         {% for tag in tags %}
-            <a href="{{ url_for('navigation_views.by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary"> {{ tag.desc }}</a> 
+            <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary"> {{ tag.desc }}</a> 
         {% endfor %}
     </div>
 {% endif %}
