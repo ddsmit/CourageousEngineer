@@ -177,5 +177,19 @@ a:hover {
     background-color: var(--backgroundColor);
     border-color: var(--darkAccent);
     border-width: 2px;
-    margin: 15 px;
+    margin-top: 15 px;
+    margin-bottom: 15 px;
+    height: 25 rem;
+}
+
+/* a:hover .article-card {
+    opacity: 95%;
+    text-decoration: underline;
+} */
+
+.tag-bucket {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10px;
+    margin-bottom: 10px
 }

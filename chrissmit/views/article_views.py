@@ -48,20 +48,23 @@ def view(edit_id):
 def article_by_tag(tag):
     recent_articles = article.get_last(4)
     articles = article.get_by_tag(tag)
-    tags = article.get_tags()
+    # tags = article.get_tags()
+    tags = article.get_used_tags()
     return render_template(
         template_name_or_list='navigation/articles.html',
         recent_articles=recent_articles, 
         articles=articles,
         tags=tags,
-        current_tags=tag,
+        current_tags=[int(tag)],
     )
 
 @blueprint.route('/articles')
 def all_articles():
     recent_articles = article.get_last(4)
     articles = article.get_all_released()
-    tags = article.get_tags()
+    # tags = article.get_tags()
+    tags = article.get_used_tags()
+    print(tags)
     return render_template(
         template_name_or_list='navigation/articles.html',
         recent_articles=recent_articles, 

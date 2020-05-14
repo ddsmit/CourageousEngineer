@@ -1,28 +1,31 @@
 {% extends "shared/_layout.html" %}
 {% block title %}So many stories to tell{% endblock %}
 {% block main_content %}
-<div class="row">
-    {% for tag in tags %}
-        {% if tag[0] in current_tags %}
-            <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary"> {{ tag[1] }}</a> 
-        {% else %}
-            <a href="{{ url_for('navigation_views.article_by_tag',tag=tag[0]) }}" class="btn btn-outline-secondary"> {{ tag[1] }}</a> 
-        {% endif %}
-    {% endfor %}
-</div>
-<div class="row">
+<!-- <div class="row"> -->
+    <div class="tag-bucket row d-flex justify-content-center">
+        {% for tag in tags %}
+            {% if tag.tag_id in current_tags %}
+                <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary float-center"> {{ tag[1] }}</a> 
+            {% else %}
+                <a href="{{ url_for('navigation_views.article_by_tag',tag=tag[0]) }}" class="btn btn-outline-secondary float-center"> {{ tag[1] }}</a> 
+            {% endif %}
+        {% endfor %}
+    </div>
+<!-- </div> -->
+<div class="row d-flex justify-content-around align-content-around">
     {% if articles %}
         {%  for article in articles %}
-            <div class="column-lg-5">
-                <div class="card article-card" style="width: 18rem;">
+            
+            <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}" class="">
+                <div class="card article-card float-center" style="width: 18rem;">
                     <img class="card-img-top" src="{{ '/static/img/articles/' + article.image_file }}" alt="{{ article.preview }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <p class="card-text">{{ article.preview }}</p>
-                        <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}">Read</a>
                     </div>
                 </div>
-            </div>
+            </a>
+            
         {% endfor %}
     {% endif %}
 </div>

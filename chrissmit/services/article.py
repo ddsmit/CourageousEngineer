@@ -102,16 +102,24 @@ def get_tags():
         for tag in all_tags
     ]
 
+def get_used_tags():
+    tag_data = full_tag()
+    return tag_data.distinct(EditTags.tag_id).order_by(EditTags.tag_id).all()
+
 def get_edit_tags(edit_id):
-    print(edit_id)
+    tag_data = full_tag()
+    return tag_data.filter(
+        EditTags.edit_id == edit_id
+    ).all()
+
+
+def full_tag():
     return db.session.query(
         EditTags.tag_id, Tags.desc
     ).join(
         Tags,
         Tags.id == EditTags.tag_id
-    ).filter(
-        EditTags.edit_id == edit_id
-    ).all()
+    )
 
 def get_by_tag(tag):
     edit_id_by_tag = db.session.query(
