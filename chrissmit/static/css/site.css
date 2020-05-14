@@ -177,9 +177,8 @@ a:hover {
     background-color: var(--backgroundColor);
     border-color: var(--darkAccent);
     border-width: 2px;
-    margin-top: 15 px;
     margin-bottom: 15 px;
-    height: 25 rem;
+    height: 500 px;
 }
 
 /* a:hover .article-card {
