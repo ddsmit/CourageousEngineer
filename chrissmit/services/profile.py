@@ -14,7 +14,7 @@ def get(email=None,id=None):
     if email:
         return User.query.filter_by(email=email).first()
     elif id:
-        return User.query.filter_by(id=id).first()
+        return User.query.filter_by(id=int(id)).first()
 
 def is_password_correct(user_password, entered_password):
     return bcrypt.check_password_hash(user_password, entered_password)

@@ -29,7 +29,14 @@ body {
 
 .main_content::selection {
     background-color: var(--navBackgroundColor);
-    color: var(--backgroundColor)
+    color: var(--backgroundColor);
+    margin-top: 15px;
+}
+
+footer {
+    background-color: var(--navBackgroundColor);
+    color: var(--backgroundColor);
+    width: 100%;
 }
 
 h1 {
@@ -84,7 +91,7 @@ a:hover {
     display: inline-block;
 }
 
-#article-drop {
+#nav-drop-article, #nav-drop-about {
   background-color: var(--navDropDownBackgroundColor);
 }
 

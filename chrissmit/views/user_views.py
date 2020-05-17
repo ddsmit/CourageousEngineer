@@ -2,13 +2,12 @@ from flask import flash, redirect, url_for, Blueprint, render_template, request
 from flask_login import login_user, logout_user, current_user
 from chrissmit.services.db_models import User
 from chrissmit.forms.user import LogInForm, RegistrationFrom
-from chrissmit.services import profile, article
+from chrissmit.services import profile, article, navigation
 
 blueprint = Blueprint('user', __name__, template_folder='templates')
 
 @blueprint.route('/login', methods=['GET','POST'])
 def login():
-    recent_articles = article.get_last(4)
     form = LogInForm()
     if current_user.is_authenticated:
         return redirect(url_for('navigation.index'))
@@ -23,9 +22,10 @@ def login():
             flash(f'Something went wrong, please check the email and password.', 'danger')
     return render_template(
         template_name_or_list='user/login.html', 
+        website_title='Log in to your account',
         form=form, 
         additional_css='/static/css/forms.css',
-        recent_articles = recent_articles,
+        nav_data=navigation.data(), 
     )
 
 @blueprint.route('/logout')

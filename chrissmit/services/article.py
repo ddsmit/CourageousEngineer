@@ -102,6 +102,10 @@ def get_tags():
         for tag in all_tags
     ]
 
+def get_tag_desc(id):
+    return db.session.query(Tags.desc).filter(Tags.id == int(id)).first()[0]
+
+
 def get_used_tags():
     tag_data = full_tag()
     return tag_data.distinct(EditTags.tag_id).order_by(EditTags.tag_id).all()

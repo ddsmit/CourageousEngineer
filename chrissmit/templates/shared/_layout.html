@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>  
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+    
+    {% if website_title %}
+        <title>{{ website_title }}</title>
+    {% else %}
+        <title>Courageous Engineer</title>
+    {% endif %}    
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic|Source+Code+Pro:500">
@@ -21,101 +21,120 @@
     {% if additional_css %}
         <link rel="stylesheet" href="{{ additional_css }}">
     {% endif %}
-
-
 </head>
+
 <body>
-<div class="nav-outer fixed-top">
-    <div class="container menu">
-        <nav class="navbar navbar-expand-lg col-sm-12">
-            <div class="row">
-                <button class="navbar-toggler logo" type="button" data-toggle="collapse" data-target="#navbarNavDropdown " id="logo">
-                    <img src="../../../static/img/logo.svg">
-                </button>
-            </div>
-            <div class="col-sm-9">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.index') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.about') }}">About</a></li>
-                        <li class="nav-item">
-                           <div class="dropdown show">
-                              <a class="nav-link"
-                                 href="#" role="button"
-                                 id="dropdownMenuLink"
-                                 data-toggle="dropdown"
-                                 aria-haspopup="true"
-                                 aria-expanded="false">Articles</a>
-
-                                <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
-                                    {%  for s in recent_articles %}
-                                        <a class="dropdown-item" href="{{ url_for('navigation_views.read_article', article_id=s.article_id) }}"> {{ s.title }}</a>
-                                    {% endfor %}
-                                    <a class="dropdown-item" href="{{ url_for('navigation_views.all_articles') }}">All Articles</a>
-                                </div>
-                              </div>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.contact') }}">Contact</a></li>
-                        {% if current_user.is_authenticated %}
-                        <li class="nav-item">
-                            <div class="dropdown show">
-                               <a class="nav-link"
-                                  href="#" role="button"
-                                  id="dropdownMenuLink"
-                                  data-toggle="dropdown"
-                                  aria-haspopup="true"
-                                  aria-expanded="false">{{ current_user.full_name }}</a>
- 
-                                 <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
-                                     <a class="dropdown-item" href="{{ url_for('maintenance.update_profile') }}">Update Profile</a>
-                                     <a class="dropdown-item" href="{{ url_for('maintenance.maintain_articles') }}">Add/Edit Article</a>
-                                     <a class="dropdown-item" href="{{ url_for('maintenance.read_messages') }}">Read Messages</a>
-                                     <a class="dropdown-item" href="/logout">Log Out</a>
-                                 </div>
-                               </div>
-                        {% endif %}
-                    </ul>
+    <div class="nav-outer fixed-top">
+        <div class="container menu">
+            <nav class="navbar navbar-expand-lg col-sm-12">
+                <div class="row">
+                    <button class="navbar-toggler logo" type="button" data-toggle="collapse" data-target="#navbarNavDropdown " id="logo">
+                        <img src="../../../static/img/logo.svg">
+                    </button>
                 </div>
+                <div class="col-sm-9">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.index') }}">Home</a></li>
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a 
+                                    class="nav-link"
+                                    href="#"
+                                    role="button"
+                                    id="dropdownMenuLink"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">About</a>
+                                    <div class="dropdown-menu" id="nav-drop-about" aria-labelledby="dropdownMenuLink">
+                                        {%  for author in nav_data['authors'] %}
+                                            <a class="dropdown-item" href="{{ url_for('navigation.about',id=author.id) }}"> {{ author.full_name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a class="nav-link"
+                                        href="#" role="button"
+                                        id="dropdownMenuLink"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">Articles</a>
+
+                                    <div class="dropdown-menu" id="nav-drop-article" aria-labelledby="dropdownMenuLink">
+                                        {%  for art in nav_data['articles'] %}
+                                            <a class="dropdown-item" href="{{ url_for('navigation_views.read_article', article_id=art.article_id) }}"> {{ art.title }}</a>
+                                        {% endfor %}
+                                        <a class="dropdown-item" href="{{ url_for('navigation_views.all_articles') }}">All Articles</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('navigation.contact') }}">Contact</a></li>
+                            {% if current_user.is_authenticated %}
+                            <li class="nav-item">
+                                <div class="dropdown show">
+                                    <a class="nav-link"
+                                        href="#" role="button"
+                                        id="dropdownMenuLink"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">{{ current_user.full_name }}</a>
+        
+                                        <div class="dropdown-menu" id="article-drop" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="{{ url_for('maintenance.update_profile') }}">Update Profile</a>
+                                            <a class="dropdown-item" href="{{ url_for('maintenance.maintain_articles') }}">Add/Edit Article</a>
+                                            <a class="dropdown-item" href="{{ url_for('maintenance.read_messages') }}">Read Messages</a>
+                                            <a class="dropdown-item" href="/logout">Log Out</a>
+                                        </div>
+                                </div>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-        </nav>
     </div>
-</div>
 
-<div class="main_content container">
-    <div class="row">
-        <div class="col-md-10">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} message">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            {% block main_content %}
-            {% endblock %}
+    <div class="main_content container">
+        <div class="row">
+            <div class="col-md-10">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} message">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                {% block main_content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous">
+    <footer class="">
+        © CourageousEngineer.com, Inc. All rights reserved.  
+    </footer>
 
-</script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous">
+    </script>
 
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
 
-<script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous">
+    </script>
 
-</script>
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
 
 </body>
 

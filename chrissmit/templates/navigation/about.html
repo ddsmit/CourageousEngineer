@@ -1,31 +1,33 @@
 {% extends "shared/_layout.html" %}
-{% block title %}About the Legend Herself{% endblock %}
 {% block main_content %}
-    {% if authors %}
-        {% for author in authors %}
+    {% if author %}
+        <div class="container">
             <div class="row">
-                <h1>{{ author.full_name }}</h1>
+                <div class="col-lg-6 ">
+                    <div class="d-flex flex-column align-content-between"></div>
+                    <h1>{{ author.full_name }}</h1>
+
+                    <h5>Twitter:<a href="https://www.twitter.com/{{ author.twitter_handle }}">{{ author.twitter_handle }}</a></h5>
+
+                    <h5><a href="{{ author.linkedin }}">LinkedIn Profile</a></h5>
+
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{ '/static/img/authors/'+ author.image_file }}" alt="">
+                </div>
             </div>
             <div class="row">
-                <h5>Twitter:<a href="https://www.twitter.com/{{ author.twitter_handle }}">{{ author.twitter_handle }}</a></h5>
-            </div>
-            <div class="row">
-                <h5><a href="{{ author.linkedin }}">LinkedIn Profile</a></h5>
-            </div>
-            <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-12">
                     {% for paragraph in author.content.split('</p>') %}
                         <p >
                             {{ paragraph }}
                         </p>
                     {% endfor %}
                 </div>
-                <div class="col-lg-4">
-                   <img src="{{ '/static/img/authors/'+ author.image_file }}" alt="">
-                </div>
-
             </div>
-        {% endfor %}
+        </div>
+    {% else %}
+        There is no author by that ID.
     {%  endif %}
 
 {% endblock %}
