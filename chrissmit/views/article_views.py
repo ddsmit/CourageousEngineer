@@ -9,13 +9,11 @@ blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templ
 @blueprint.route('/articles/<article_id>')
 def read_article(article_id):
     current_article = article.get_full_article(article_id)
-    # current_edit = article.get_edit(current_article.current_edit_id)
     tags = article.get_edit_tags(current_article.current_edit_id)
     return render_template(
         template_name_or_list='articles/read.html',
         website_title=current_article.title,
         content=current_article,
-        # edit = current_edit,
         release=False,
         suggest_edit=current_user.is_authenticated,
         go_to_latest = False,

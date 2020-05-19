@@ -17,6 +17,8 @@ html {
 
 body {
     background-color: var(--backgroundColor);
+    position: relative;
+    min-height: calc(100vh - 160px);
 }
 
 .main_content {
@@ -24,7 +26,7 @@ body {
     color: var(--primaryFontColor);
     background-color: var(--backgroundColor);
     border: 2px;
-    height: 100%;
+    padding-bottom:50px;
 }
 
 .main_content::selection {
@@ -36,7 +38,11 @@ body {
 footer {
     background-color: var(--navBackgroundColor);
     color: var(--backgroundColor);
+    padding: 10px;
+    position: center;
     width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 h1 {
