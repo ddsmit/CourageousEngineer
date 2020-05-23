@@ -11,11 +11,11 @@
         {% endfor %}
     </div>
 <!-- </div> -->
-<div class="d-flex justify-content-around align-content-between flex-wrap">
+<div class="d-inline-flex align-content-between flex-wrap justify-content-around">
     {% if articles %}
         {%  for article in articles %}
             <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}" class="">
-                <div class="card article-card float-middle" style="width: 18rem;">
+                <div class="card article-card float-middle">
                     <img class="card-img-top" src="{{ '/static/img/articles/' + article.image_file }}" alt="{{ article.preview }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>

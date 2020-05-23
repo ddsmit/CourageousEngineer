@@ -1,11 +1,13 @@
 :root {
     --backgroundColor: lightgrey;
     --primaryFontColor: rgba(80,80,80,1);
-    --navBackgroundColor: rgba(80,80,80,0.8);
-    --navDropDownBackgroundColor: rgba(80,80,80,0.6);
+    --navBackgroundColor: rgba(80,80,80,0.95);
+    --navDropDownBackgroundColor: rgba(80,80,80,0.8);
     --navDropDownText: lightgrey;
     --lightAccent:  #6FC7C7;
     --darkAccent:  #186262;
+    --cardWidth: 280px;
+    --cardHeight: 435px;
 }
 
 title {
@@ -117,13 +119,8 @@ a:hover {
     float: right;
 }
 
-.post_image {
-    padding: 15px;
-    width: 60%;
-}
-
 .home-carousel {
-    height: 23rem;
+    height: 22rem;
 }
 
 .home-carousel h1 {
@@ -191,17 +188,31 @@ a:hover {
     border-color: var(--darkAccent);
     border-width: 2px;
     margin-bottom: 15 px;
-    height: 500 px;
+    height: var(--cardHeight);
+    width: var(--cardWidth);
 }
-
-/* a:hover .article-card {
-    opacity: 95%;
-    text-decoration: underline;
-} */
 
 .tag-bucket {
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 10px;
     margin-bottom: 10px
+}
+
+.about-pic {
+    max-width: 100vw;
+    margin: 15px;
+    border-width: 2px;
+    border-color: var(--lightAccent);
+}
+
+.post-image {
+    padding: 15px;
+    width: 60%;
+}
+
+.card-img-top {
+    width: auto;
+    height: var(--cardWidth);
+    object-fit: cover;
 }
