@@ -6,8 +6,6 @@
     --navDropDownText: lightgrey;
     --lightAccent:  #6FC7C7;
     --darkAccent:  #186262;
-    --cardWidth: 280px;
-    --cardHeight: 435px;
 }
 
 title {
@@ -15,7 +13,26 @@ title {
 }
 html {
     background-color: var(--backgroundColor);
+    font-size: 22px;
 }
+
+@media screen and (min-width: 320px) {
+    html {
+      font-size: calc(22px + 6 * ((100vw - 320px) / 680));
+      --cardWidth: 25rem;
+      --cardHeight: 25rem;
+      --cardPic: 20rem;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    html {
+      font-size: 16px;
+      --cardWidth: 18rem;
+      --cardHeight: 22rem;
+      --cardPic: 10rem;
+    }
+} 
 
 body {
     background-color: var(--backgroundColor);
@@ -74,7 +91,6 @@ nav {
 }
 
 .nav-link {
-
     color: var(--lightAccent);
     text-align: left;
     margin-left: auto;
@@ -190,6 +206,13 @@ a:hover {
     margin-bottom: 15 px;
     height: var(--cardHeight);
     width: var(--cardWidth);
+    max-width: 95%;
+}
+
+.card-img-top {
+    width: auto;
+    height: var(--cardPic);
+    object-fit: cover;
 }
 
 .tag-bucket {
@@ -211,8 +234,3 @@ a:hover {
     width: 60%;
 }
 
-.card-img-top {
-    width: auto;
-    height: var(--cardWidth);
-    object-fit: cover;
-}
