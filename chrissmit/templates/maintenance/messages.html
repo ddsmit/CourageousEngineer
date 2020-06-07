@@ -1,7 +1,7 @@
 {% extends "shared/_layout.html" %}
 {% block main_content %}
     <h2>Messages</h2>
-    {% if read_messages %}
+    {% if unread_messages %}
         <h3>Unread</h3>
         {%  for message in unread_messages %}
             <div class="row">
