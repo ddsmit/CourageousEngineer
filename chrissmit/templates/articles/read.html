@@ -7,11 +7,11 @@
 {%  endif %}
 
 {% if content %}
-    <h2>{{ content.title }}</h2>
+    <h2 class="post-header">{{ content.title }}</h2>
     <div class="row">
         <div class="col-sm-12">
             {% if content.image_file %}
-                <img src="{{ '/static/img/articles/' + content.image_file }}" alt="{{ content.image_file }}">
+                <img src="{{ '/static/img/articles/' + content.image_file }}" alt="{{ content.image_file }}" class="post-image">
             {% endif %}
         </div>
     </div>
