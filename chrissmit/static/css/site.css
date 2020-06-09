@@ -18,10 +18,16 @@ html {
 
 @media screen and (min-width: 320px) {
     html {
-      font-size: calc(22px + 6 * ((100vw - 320px) / 680));
+      font-size: calc(40px + 6 * ((100vw - 320px) / 680));
       --cardWidth: 25rem;
       --cardHeight: 25rem;
       --cardPic: 20rem;
+    }
+
+    #logo img {
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -31,6 +37,10 @@ html {
       --cardWidth: 18rem;
       --cardHeight: 22rem;
       --cardPic: 10rem;
+    }
+
+    #logo {
+        display: inline-block;
     }
 } 
 
@@ -111,9 +121,9 @@ a:hover {
     color: var(--darkAccent);
 }
 
-#logo {
+/* #logo {
     display: inline-block;
-}
+} */
 
 #nav-drop-article, #nav-drop-about {
   background-color: var(--navDropDownBackgroundColor);
