@@ -6,6 +6,9 @@
     --navDropDownText: lightgrey;
     --lightAccent:  #6FC7C7;
     --darkAccent:  #186262;
+    --cardHeight: 22rem;
+    --cardWidth: 18rem;
+    --cardPic: 10rem;
 }
 
 title {
@@ -18,29 +21,13 @@ html {
 
 @media screen and (min-width: 320px) {
     html {
-      font-size: calc(40px + 6 * ((100vw - 320px) / 680));
-      --cardWidth: 25rem;
-      --cardHeight: 25rem;
-      --cardPic: 20rem;
-    }
-
-    #logo img {
-        width: 250px;
-        margin-left: auto;
-        margin-right: auto;
+      font-size: calc(16px + 6 * ((100vw - 320px) / 680));
     }
 }
 
 @media screen and (min-width: 1000px) {
     html {
-      font-size: 16px;
-      --cardWidth: 18rem;
-      --cardHeight: 22rem;
-      --cardPic: 10rem;
-    }
-
-    #logo {
-        display: inline-block;
+      font-size: 16px;      
     }
 } 
 
@@ -55,7 +42,7 @@ body {
     color: var(--primaryFontColor);
     background-color: var(--backgroundColor);
     border: 2px;
-    padding-bottom:50px;
+    padding-bottom:70px;
 }
 
 .main_content::selection {
@@ -121,9 +108,9 @@ a:hover {
     color: var(--darkAccent);
 }
 
-/* #logo {
+#logo {
     display: inline-block;
-} */
+}
 
 #nav-drop-article, #nav-drop-about {
   background-color: var(--navDropDownBackgroundColor);
@@ -233,7 +220,7 @@ a:hover {
 }
 
 .about-pic {
-    max-width: 100vw;
+    max-width: 100%;
     margin: 15px;
     border-width: 2px;
     border-color: var(--lightAccent);
