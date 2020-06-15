@@ -110,6 +110,19 @@ def get_used_tags():
     tag_data = full_tag()
     return tag_data.distinct(EditTags.tag_id).order_by(EditTags.tag_id).all()
 
+def get_current_used_tags():
+    return db.session.query(
+        EditTags.tag_id,
+        EditTags.edit_id,
+        Tags.desc,
+        Article.current_edit_id,
+    ).join(
+        EditTags,
+        Article.current_edit_id==EditTags.edit_id
+    ).join(
+        Tags, EditTags.tag_id==Tags.id
+    ).filter(Article.is_released == True).all()
+
 def get_edit_tags(edit_id):
     tag_data = full_tag()
     return tag_data.filter(

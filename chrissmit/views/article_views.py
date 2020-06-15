@@ -43,7 +43,7 @@ def view(edit_id):
 @blueprint.route('/articles/tag/<tag>')
 def article_by_tag(tag):
     articles = article.get_by_tag(tag)
-    tags = article.get_used_tags()
+    tags = article.get_current_used_tags()
     return render_template(
         template_name_or_list='navigation/articles.html',
         website_title=article.get_tag_desc(tag),
@@ -56,7 +56,7 @@ def article_by_tag(tag):
 @blueprint.route('/articles')
 def all_articles():
     articles = article.get_all_released()
-    tags = article.get_used_tags()
+    tags = article.get_current_used_tags()
     return render_template(
         template_name_or_list='navigation/articles.html',
         website_title='Read some amazing stories.',

@@ -4,9 +4,9 @@
     <div class="tag-bucket row d-flex justify-content-center">
         {% for tag in tags %}
             {% if tag.tag_id in current_tags %}
-                <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary float-center"> {{ tag[1] }}</a> 
+                <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary float-center"> {{ tag.desc }}</a> 
             {% else %}
-                <a href="{{ url_for('navigation_views.article_by_tag',tag=tag[0]) }}" class="btn btn-outline-secondary float-center"> {{ tag[1] }}</a> 
+                <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary float-center"> {{ tag.desc }}</a> 
             {% endif %}
         {% endfor %}
     </div>
