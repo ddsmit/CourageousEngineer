@@ -83,11 +83,15 @@ def get_all_archived():
         ArticleEdits.is_ready_for_release==False
     )
 
-def get_full_articles(filter_criteria, desc=True):
+def get_full_articles(filter_criteria, desc=True, only_released=False):
     full_article = full_article_data()
+    if not only_released:
+        filtered_article = full_article.filter(filter_criteria)
+    else:
+        filtered_article = full_article.filter(filter_criteria).filter(Article.is_released==True)
     if desc:
-        return full_article.filter(filter_criteria).order_by(Article.posted.desc()).all()
-    return full_article.filter(filter_criteria).all()
+        return filtered_article.order_by(Article.posted.desc()).all()
+    return filtered_article.all()
 
 def get_last(number=4, desc=True):
     full_article = full_article_data()
@@ -145,7 +149,8 @@ def get_by_tag(tag):
         EditTags.tag_id == tag
     )
     return get_full_articles(
-        filter_criteria = ArticleEdits.id.in_(edit_id_by_tag)
+        filter_criteria = ArticleEdits.id.in_(edit_id_by_tag),
+        only_released=True,
     )
 
 
