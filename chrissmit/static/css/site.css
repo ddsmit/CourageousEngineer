@@ -118,6 +118,7 @@ a:hover {
 
 .dropdown-item {
     color: var(--navDropDownText);
+    font-size: 1.5rem;
 }
 
 .dropdown-item:active {
