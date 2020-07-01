@@ -4,6 +4,6 @@
 .idea
 __pycache__/
 config.json
-chrissmit/site.db
+*.db
 *.png
 *.jpg
