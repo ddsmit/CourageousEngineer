@@ -59,6 +59,14 @@
             {% else %}
                 {{ contact_form.content(class="form-control ",) }}
             {% endif %}
+        </div>
+        <div class="form-group">
+            {{ contact_form.recaptcha }}
+            <div class="invalid-feedback">
+                {% for error in contact_form.content.errors %}
+                    <span> {{ error }}</span>
+                {% endfor %}
+            </div>
         </div>      
     </fieldset>
     <div class="form-group">

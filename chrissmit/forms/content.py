@@ -4,6 +4,7 @@ from flask_login import current_user
 from chrissmit.services import profile, messages
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, Label, SelectField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, URL 
+from flask_wtf.recaptcha import RecaptchaField
 
 class UpdatesForm(FlaskForm):
     title = StringField(
@@ -93,4 +94,5 @@ class ContactForm(FlaskForm):
         'Article',
         validators = [DataRequired()]
     )
+    recaptcha = RecaptchaField()
     submit = SubmitField('Send')
