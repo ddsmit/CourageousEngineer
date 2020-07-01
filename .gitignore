@@ -3,6 +3,7 @@
 .vscode
 .idea
 __pycache__/
+venv
 config.json
 *.db
 *.png
