@@ -210,7 +210,7 @@ a:hover {
 .card-img-top {
     width: auto;
     height: var(--cardPic);
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .tag-bucket {
