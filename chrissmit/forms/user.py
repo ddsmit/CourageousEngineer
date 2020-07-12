@@ -40,8 +40,6 @@ class LogInForm(FlaskForm):
     submit = SubmitField('Log In')
 
     def validate_email(self, email):
-        print(email.data)
         user = User.query.filter_by(email=email.data).first()
-        print(user)
         if not user:
             raise ValidationError("Not a valid user's email")

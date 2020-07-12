@@ -37,7 +37,6 @@ def create_edit_tags(edit_id, form):
 def create_edit_tags_existing(previous_edit, new_edit):
     existing_tags = EditTags.query.filter_by(edit_id = previous_edit.id).all()
     for tag in existing_tags:
-        print('tag-',tag.id,'edit', new_edit.id)
         new_record = EditTags(
             edit_id = new_edit.id,
             tag_id = int(tag.tag_id)
