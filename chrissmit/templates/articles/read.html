@@ -24,7 +24,7 @@
     </article>
     <br>
     {% if display_posted %}
-    <strong>Posted by {{ content.full_name }}</strong> on 
+    <strong>Posted by <a href="{{ url_for('navigation.about', id=content.author_id) }}">{{ content.full_name }}</a></strong> on 
         {{ content.posted.strftime('%m/%d/%Y') }}
     {% else %}
         <strong>Edited by {{ content.full_name }}</strong> on 
