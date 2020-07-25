@@ -43,3 +43,28 @@ class LogInForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if not user:
             raise ValidationError("Not a valid user's email")
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField(
+        'Email',
+        validators=[DataRequired(), Email(), ]
+    )
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if not user:
+            raise ValidationError("Not a valid user's email")
+
+class LogInForm(FlaskForm):
+    password = PasswordField(
+        'Password',
+        validators=[DataRequired(), Length(min=8), ],
+    ) 
+    confirm_password = PasswordField(
+        'Confirm Password',
+        validators=[DataRequired(), EqualTo('password')]
+    )
+    submit = SubmitField('Reset Password')
+
