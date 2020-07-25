@@ -57,7 +57,7 @@ class RequestResetForm(FlaskForm):
         if not user:
             raise ValidationError("Not a valid user's email")
 
-class LogInForm(FlaskForm):
+class ResetPassowrdForm(FlaskForm):
     password = PasswordField(
         'Password',
         validators=[DataRequired(), Length(min=8), ],
