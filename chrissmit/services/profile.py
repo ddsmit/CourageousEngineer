@@ -1,6 +1,7 @@
 from chrissmit.services.db_models import User
 from chrissmit import bcrypt, db, app
 from flask_login import current_user
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 
 def get_all():
@@ -35,3 +36,15 @@ def update_form_data(form):
     form.image_file.data = current_user.image_file
     form.content.data = current_user.content
     return form
+
+def get_reset_token(user_id, expires_seconds=15*60):
+    serializer = Serializer(app.config['SECRET_KEY'], expires_seconds)
+    return serializer.dumps({'user_id':user_id}).decode('utf-8') 
+
+def verify_reset_token(token):
+    serializer = Serializer(app.config['SECRET_KEY'])
+    try:
+        user_id = serializer.loads(token)['user_id']
+    except:
+        return None
+    return get(id=user_id)
