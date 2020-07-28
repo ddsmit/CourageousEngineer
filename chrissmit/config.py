@@ -12,3 +12,11 @@ class Config:
     SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')
     RECAPTCHA_PUBLIC_KEY = config.get('RECAPTCHA_PUBLIC_KEY')
     RECAPTCHA_PRIVATE_KEY = config.get('RECAPTCHA_PRIVATE_KEY')
+    MAIL_SERVER = config.get('MAIL_SERVER')
+    MAIL_PORT = config.get('MAIL_PORT') 
+    MAIL_USE_TLS = config.get('MAIL_USE_TLS')
+    MAIL_USE_SSL = config.get('MAIL_USE_SSL')
+    MAIL_USERNAME = config.get('MAIL_USERNAME')
+    MAIL_PASSWORD = config.get('MAIL_PASSWORD')
+
+
