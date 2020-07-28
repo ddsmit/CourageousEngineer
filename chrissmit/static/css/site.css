@@ -92,21 +92,31 @@ nav {
     text-align: left;
     margin-left: auto;
     margin-right: 0px;
-    width: 100%
+    width: 100%    
 }
 
-.nav-link a:hover {
-    opacity: 50%;
+/* a.nav-link {
     color: var(--lightAccent);
-}
+    text-align: left;
+    margin-left: auto;
+    margin-right: 0px;
+    width: 100%
+} */
 
-a {
-    color: var(--darkAccent);
-}
 a:hover {
     opacity: 50%;
     color: var(--darkAccent);
 }
+
+a:hover.nav-link {
+    color: var(--lightAccent);
+    opacity: 60%;
+}
+
+.main_content a {
+    color: var(--darkAccent);
+}
+
 
 #logo {
     display: inline-block;
