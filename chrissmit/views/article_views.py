@@ -14,7 +14,7 @@ def read_article(article_id):
         template_name_or_list='articles/read.html',
         website_title=current_article.title,
         website_description=current_article.preview,
-        website_image= '/static/img/articles/' + current_article.image_file
+        website_image= '/static/img/articles/' + current_article.image_file,
         content=current_article,
         release=False,
         suggest_edit=current_user.is_authenticated,
@@ -49,7 +49,7 @@ def article_by_tag(tag):
     return render_template(
         template_name_or_list='navigation/articles.html',
         website_title = article.get_tag_desc(tag),
-        website_description = f'Articles with tag: {article.get_tag_desc(tag)}' 
+        website_description = f'Articles with tag: {article.get_tag_desc(tag)}',
         nav_data=navigation.data(), 
         articles=articles,
         tags=tags,
@@ -63,7 +63,7 @@ def all_articles():
     return render_template(
         template_name_or_list='navigation/articles.html',
         website_title='Read some amazing stories.',
-        website_description="Browse all of the articles we've written so far."
+        website_description="Browse all of the articles we've written so far.",
         nav_data=navigation.data(), 
         articles=articles,
         tags=tags,
