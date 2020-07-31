@@ -22,6 +22,8 @@ def about(id):
     return render_template(
         template_name_or_list='navigation/about.html',
         website_title=f'Meet {current_profile.full_name}!',
+        website_description=f'Learn more about {current_profile.full_name}',
+        website_image='/static/img/authors/' + current_profile.image_file,
         nav_data=navigation.data(), 
         author=current_profile,
     )
