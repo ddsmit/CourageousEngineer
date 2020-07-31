@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if website_title %}
         <title>{{ website_title }}</title>
+        <meta property="og:title" content="{{ website_title }}" />
     {% else %}
         <title>Courageous Engineer</title>
+        <meta property="og:title" content="Courageous Engineer" />
     {% endif %}    
+    {% if website_description %}
+        <meta property="og:description" content="{{ website_description }}" />
+    {% else %}
+        <meta property="og:description" content="Speak out and be your authentic self." />
+    {% endif %}
+    {% if website_image %}
+        <meta property="og:description" content="{{ website_image }}" />
+    {% else %}
+        <meta property="og:description" content="../../../static/img/logo.ico" />
+    {% endif %}
 
     <link rel="icon" 
       type="image/ico" 
