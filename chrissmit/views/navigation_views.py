@@ -23,7 +23,7 @@ def about(id):
         template_name_or_list='navigation/about.html',
         website_title=f'Meet {current_profile.full_name}!',
         website_description=f'Learn more about {current_profile.full_name}',
-        website_image=image.get_profile_preview(current_profile.image_file),
+        website_image=image.get_preview(current_profile.image_file),
         nav_data=navigation.data(), 
         author=current_profile,
     )

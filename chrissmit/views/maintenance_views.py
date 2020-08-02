@@ -34,6 +34,7 @@ def update_profile():
         if profile_form.image_file.data:
             image.delete(current_user.image_file, 'authors')
             current_user.image_file = image.save(profile_form.image_file.data, 'authors')
+            image.save_preview(profile_form.image_file.data, current_user.image_file)
         profile.update(profile_form)
         flash('Profile updated','success')
         return redirect(url_for('maintenance.update_profile'))
@@ -80,6 +81,7 @@ def create_article():
     if article_form.validate_on_submit():
         if article_form.image_file.data:
             image_file = image.save(article_form.image_file.data, 'articles')
+            image.save_preview(article_form.image_file.data, image_file)
         else:
             image_file = None
         edit = article.create(article_form, image_file)
@@ -122,7 +124,9 @@ def update_article(edit_id):
     if article_form.validate_on_submit():
         if article_form.image_file.data:
             image.delete(current_edit.image_file,'articles')
+            image.delete(current_edit.image_file,'preview')
             current_edit.image_file = image.save(article_form.image_file.data, 'articles')
+            image.save_preview(article_form.image_file.data, current_edit.image_file)
         article.update_edit(article_form,current_edit)
         
         if article_form.step_forward.data:

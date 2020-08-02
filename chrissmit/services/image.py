@@ -32,10 +32,18 @@ def save(image_file, subdirectory):
         file_name = new_file_path.name
         return file_name
 
-def get_article_preview(image_file):
-    if  not ('.svg' in image_file or '.ico' in image_file):
-        return 'https://www.courageousnegineer.com/static/img/articles/' + image_file
+def save_preview(image_file, file_name):
+    if image_file:
+        image_path = pathlib.Path(image_file.filename)
+        file_extension = image_path.suffix
+        if file_extension != '.svg':
+            output_size = (1200,628)
+            image_file = Image.open(image_file)
+            image_file.thumbnail(output_size)
+            new_file_path = create_filepath(file_name, 'preview')
+            image_file.save(str(new_file_path))
 
-def get_profile_preview(image_file):
+def get_preview(image_file):
     if  not ('.svg' in image_file or '.ico' in image_file):
-        return 'https://www.courageousnegineer.com/static/img/authors/' + image_file
+        return 'https://www.courageousnegineer.com/static/preview/' + image_file
+        
