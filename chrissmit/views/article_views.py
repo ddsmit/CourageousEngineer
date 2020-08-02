@@ -1,5 +1,5 @@
 import flask
-from flask import render_template
+from flask import render_template, flash, redirect, url_for
 from chrissmit.services import article, profile, navigation, image
 from flask_login import current_user, login_required
 
@@ -9,6 +9,15 @@ blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templ
 @blueprint.route('/articles/<article_id>')
 def read_article(article_id):
     current_article = article.get_full_article(article_id)
+
+    if not current_article:
+        flash('Article does not exist, please check your url. If  you navigated to the URL from our site, please help us out by reporting the error on the "Contact" page.','warning')
+        return redirect(url_for('navigation_views.all_articles'))
+    
+    if not current_article.is_released:
+        flash(f'{current_article.title} has not been released to the public yet, or it has been archived.', 'warning')
+        return redirect(url_for('navigation_views.all_articles'))
+
     tags = article.get_edit_tags(current_article.current_edit_id)
     return render_template(
         template_name_or_list='articles/read.html',
