@@ -31,3 +31,11 @@ def save(image_file, subdirectory):
         image_file.save(str(new_file_path))            
         file_name = new_file_path.name
         return file_name
+
+def get_article_preview(image_file):
+    if  not ('.svg' in image_file or '.ico' in image_file):
+        return 'https://www.courageousnegineer.com/static/img/articles/' + image_file
+
+def get_profile_preview(image_file):
+    if  not ('.svg' in image_file or '.ico' in image_file):
+        return 'https://www.courageousnegineer.com/static/img/authors/' + image_file

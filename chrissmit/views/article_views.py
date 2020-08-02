@@ -1,6 +1,6 @@
 import flask
 from flask import render_template
-from chrissmit.services import article, profile, navigation
+from chrissmit.services import article, profile, navigation, image
 from flask_login import current_user, login_required
 
 blueprint = flask.Blueprint('navigation_views', __name__, template_folder='templates')
@@ -14,7 +14,7 @@ def read_article(article_id):
         template_name_or_list='articles/read.html',
         website_title=current_article.title,
         website_description=current_article.preview,
-        website_image= 'static/img/articles/' + current_article.image_file,
+        website_image= image.get_article_preview(current_article.image_file),
         content=current_article,
         release=False,
         suggest_edit=current_user.is_authenticated,
