@@ -16,9 +16,9 @@
         <meta property="og:description" content="Speak out and be your authentic self." />
     {% endif %}
     {% if website_image %}
-        <meta property="og:image" content="https://www.CourageousEngineer.com/{{ website_image }}" />
+        <meta property="og:image" content="{{ website_image }}" />
     {% else %}
-        <meta property="og:image" content="https://www.CourageousEngineer.com/static/img/logo.ico" />
+        <meta property="og:image" content="https://www.CourageousEngineer.com/static/img/logo.png" />
     {% endif %}
 
     <link rel="icon" 
@@ -114,7 +114,7 @@
 
     <div class="main_content container">
         <div class="row">
-            <div class="col-lg-10 col-12">
+            <div class="col-lg-12 col-12">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
