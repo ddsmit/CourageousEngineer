@@ -28,6 +28,7 @@ def save(image_file, subdirectory):
             output_size = (500,500)
             image_file = Image.open(image_file)
             image_file.thumbnail(output_size)
+        print(str(new_file_path))
         image_file.save(str(new_file_path))            
         file_name = new_file_path.name
         return file_name
@@ -41,6 +42,7 @@ def save_preview(image_file, file_name):
             image_file = Image.open(image_file)
             image_file.thumbnail(output_size)
             new_file_path = create_filepath(file_name, 'preview')
+            print(str(new_file_path))
             image_file.save(str(new_file_path))
 
 def get_preview(image_file):
