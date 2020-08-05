@@ -114,7 +114,7 @@ def get_used_tags():
     return tag_data.distinct(EditTags.tag_id).order_by(EditTags.tag_id).all()
 
 def get_current_used_tags():
-    return db.session.query(
+    tag_data = db.session.query(
         EditTags.tag_id,
         EditTags.edit_id,
         Tags.desc,
@@ -124,7 +124,19 @@ def get_current_used_tags():
         Article.current_edit_id==EditTags.edit_id
     ).join(
         Tags, EditTags.tag_id==Tags.id
-    ).filter(Article.is_released == True).all()
+    ).filter(Article.is_released == True).distinct(EditTags.tag_id)
+    tag_ids = set(
+        tag.tag_id
+        for tag in tag_data
+    )
+    tag_descs = set(
+        tag.desc
+        for tag in tag_data
+    )
+    return [
+        {'desc':desc, 'tag_id':tag_id}
+        for desc, tag_id in zip(tag_descs, tag_ids)
+    ]
 
 def get_edit_tags(edit_id):
     tag_data = full_tag()
