@@ -120,6 +120,14 @@ a:hover.nav-link {
 
 #logo {
     display: inline-block;
+    /* height: 80px;
+    width: 80px; */
+}
+
+.logo-image {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
 }
 
 #nav-drop-article, #nav-drop-about {
