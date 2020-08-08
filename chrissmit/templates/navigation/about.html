@@ -17,11 +17,9 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                {% for paragraph in author.content.split('</p>') %}
-                    <p >
-                        {{ paragraph }}
-                    </p>
-                {% endfor %}
+                {% filter markdown %}
+                    {{ author.content }}
+                {% endfilter %}
             </div>
         </div>
 

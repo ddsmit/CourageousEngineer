@@ -38,7 +38,7 @@ body {
 }
 
 .main_content {
-    margin-top: 160px;
+    margin-top: 120px;
     color: var(--primaryFontColor);
     background-color: var(--backgroundColor);
     border: 2px;
@@ -55,7 +55,7 @@ footer {
     background-color: var(--navBackgroundColor);
     color: var(--backgroundColor);
     padding: 10px;
-    position: center;
+    /*position: center;*/
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -95,14 +95,6 @@ nav {
     width: 100%    
 }
 
-/* a.nav-link {
-    color: var(--lightAccent);
-    text-align: left;
-    margin-left: auto;
-    margin-right: 0px;
-    width: 100%
-} */
-
 a:hover {
     opacity: 50%;
     color: var(--darkAccent);
@@ -117,11 +109,8 @@ a:hover.nav-link {
     color: var(--darkAccent);
 }
 
-
 #logo {
     display: inline-block;
-    /* height: 80px;
-    width: 80px; */
 }
 
 .logo-image {
@@ -219,7 +208,7 @@ a:hover.nav-link {
     background-color: var(--backgroundColor);
     border-color: var(--darkAccent);
     border-width: 2px;
-    margin-bottom: 15 px;
+    margin-bottom: 15px;
     height: var(--cardHeight);
     width: var(--cardWidth);
     max-width: 95%;

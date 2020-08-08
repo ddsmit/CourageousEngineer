@@ -16,11 +16,13 @@
         </div>
     </div>
     <article>
-        {% for paragraph in content.content.split('</p>') %}
-            <p >
-                {{ paragraph }}
-            </p>
-        {% endfor %}
+{#        {% for paragraph in content.content.split('</p>') %}#}
+{#            <p >#}
+                {% filter markdown %}
+                    {{ content.content }}
+                {% endfilter %}
+{#            </p>#}
+{#        {% endfor %}#}
     </article>
     <br>
     {% if display_posted %}
