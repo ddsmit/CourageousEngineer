@@ -25,14 +25,13 @@ def save(image_file, subdirectory, desired_width=800):
         file_extension = image_path.suffix
         new_file_path = create_filepath(image_hex + file_extension, subdirectory)
         if file_extension != '.svg':
-            # output_size = (500,500)
             image_file = Image.open(image_file)
             if image_file.width > desired_width:
-                resize_factor = desired_width/image_file.width
+                resize_factor = image_file.width/desired_width
             else:
                 resize_factor = 1
             image_file.thumbnail((image_file.width,500))
-            image_file.reduce(resize_factor)
+            image_file.reduce(int(resize_factor))
         image_file.save(str(new_file_path))            
         file_name = new_file_path.name
         return file_name
