@@ -9,9 +9,8 @@ from flask_mail import Mail
 from flaskext.markdown import Markdown
 import platform
 
-if platform.system() == 'Windows':
-    import mimetypes
-    mimetypes.add_type('text/javascript', '.js')
+import mimetypes
+mimetypes.add_type('text/javascript', '.js')
 
 secure_headers = SecureHeaders()
 
