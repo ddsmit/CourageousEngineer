@@ -20,7 +20,6 @@ function imageControl(e) {
 function calculatePositions(e) {
     const menuBottom = menu.offsetHeight;
     const imageBottom = postImage.offsetHeight;
-    console.log(menuBottom, imageBottom)
     header.setAttribute('style','padding-top: ' + imageBottom + 'px')
 }
 

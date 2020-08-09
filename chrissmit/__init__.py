@@ -7,9 +7,11 @@ from chrissmit.views import blueprints
 from secure import SecureHeaders
 from flask_mail import Mail
 from flaskext.markdown import Markdown
+import platform
 
-import mimetypes
-mimetypes.add_type('text/javascript', '.js')
+if platform.system() == 'Windows':
+    import mimetypes
+    mimetypes.add_type('text/javascript', '.js')
 
 secure_headers = SecureHeaders()
 
