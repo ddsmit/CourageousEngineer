@@ -7,43 +7,46 @@
 {%  endif %}
 
 {% if content %}
-    <h2 class="post-header">{{ content.title }}</h2>
-    <div class="row">
-        <div class="col-sm-12">
-            {% if content.image_file %}
-                <img src="{{ '/static/img/articles/' + content.image_file }}" alt="{{ content.image_file }}" class="post-image">
-            {% endif %}
+     {% if content.image_file %}
+        <img src="{{ '/static/img/articles/' + content.image_file }}" alt="{{ content.image_file }}" class="article-image-top" id="article_image">
+     {% endif %}
+
+    <div class="main_content container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h1 class="article-header" id="header">{{ content.title }}</h1>
+                <strong class="article-author">Posted by <a href="{{ url_for('navigation.about', id=content.author_id) }}">{{ content.full_name }}</a></strong>
+                <article class="content">
+                    {% filter markdown %}
+                        {{ content.content }}
+                    {% endfilter %}
+                </article>
+                <br>
+                {% if display_posted %}
+                    Posted on {{ content.posted.strftime('%m/%d/%Y') }}
+                {% else %}
+                    <strong>Edited by {{ content.full_name }}</strong> on
+                    {{ content.edited.strftime('%m/%d/%Y') }}
+                {% endif %}
+                <div class="row">
+                    {% for tag in tags %}
+                        <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary"> {{ tag.desc }}</a>
+                    {% endfor %}
+                </div>
+
+                {% if suggest_edit %}
+                    <h5><a href="/suggestedit/{{ content.id }}">Suggest an Edit</a></h5>
+                {% endif %}
+                {% if release %}
+                    <h5><a href="/release/{{ content.id }}">Release the Article</a></h5>
+                {% endif %}
+                {% if go_to_latest %}
+                    <h5>a href="#">Go to Latest Edit</a></h5>
+                {% endif %}
+
+            </div>
         </div>
     </div>
-    <article>
-        {% for paragraph in content.content.split('</p>') %}
-            <p >
-                {{ paragraph }}
-            </p>
-        {% endfor %}
-    </article>
-    <br>
-    {% if display_posted %}
-    <strong>Posted by <a href="{{ url_for('navigation.about', id=content.author_id) }}">{{ content.full_name }}</a></strong> on 
-        {{ content.posted.strftime('%m/%d/%Y') }}
-    {% else %}
-        <strong>Edited by {{ content.full_name }}</strong> on 
-        {{ content.edited.strftime('%m/%d/%Y') }}
-    {% endif %}
-    <div class="row">
-        {% for tag in tags %}
-            <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary"> {{ tag.desc }}</a> 
-        {% endfor %}
-    </div>
-{% endif %}
-{% if suggest_edit %}
-    <h5><h5><a href="/suggestedit/{{ content.id }}">Suggest an Edit</a></h5>
-{% endif %}
-{% if release %}
-    <h5><a href="/release/{{ content.id }}">Release the Article</a></h5>
-{% endif %}
-{% if go_to_latest %}
-    <h5>a href="#">Go to Latest Edit</a></h5>
 {% endif %}
 
 {%  endblock %}

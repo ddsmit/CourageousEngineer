@@ -6,6 +6,10 @@ from flask_login import LoginManager
 from chrissmit.views import blueprints
 from secure import SecureHeaders
 from flask_mail import Mail
+from flaskext.markdown import Markdown
+
+import mimetypes
+mimetypes.add_type('text/javascript', '.js')
 
 secure_headers = SecureHeaders()
 
@@ -18,6 +22,8 @@ app.config['MAIL_USER_SSL'] = Config.MAIL_USE_SSL
 app.config['MAIL_USERNAME'] = Config.MAIL_USERNAME
 app.config['MAIL_PASSWORD'] = Config.MAIL_PASSWORD
 mail = Mail(app)
+
+Markdown(app)
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
