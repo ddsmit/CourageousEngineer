@@ -1,30 +1,35 @@
 {% extends "shared/_layout.html" %}
 {% block main_content %}
-<!-- <div class="row"> -->
-    <div class="tag-bucket row d-flex justify-content-center">
-        {% for tag in tags %}
-            {% if tag.tag_id in current_tags %}
-                <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary float-center"> {{ tag.desc }}</a> 
-            {% else %}
-                <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary float-center"> {{ tag.desc }}</a> 
-            {% endif %}
-        {% endfor %}
-    </div>
-<!-- </div> -->
-<div class="d-inline-flex align-content-between flex-wrap justify-content-around">
-    {% if articles %}
-        {%  for article in articles %}
-            <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}" class="">
-                <div class="card article-card float-middle">
-                    <img class="card-img-top" src="{{ '/static/img/articles/' + article.image_file }}" alt="{{ article.preview }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ article.title }}</h5>
-                        <p class="card-text">{{ article.preview }}</p>
-                    </div>
+    <div class="main_content container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <div class="tag-bucket row d-flex justify-content-center">
+                    {% for tag in tags %}
+                        {% if tag.tag_id in current_tags %}
+                            <a href="{{ url_for('navigation_views.all_articles') }}" class="btn btn-secondary float-center"> {{ tag.desc }}</a>
+                        {% else %}
+                            <a href="{{ url_for('navigation_views.article_by_tag',tag=tag.tag_id) }}" class="btn btn-outline-secondary float-center"> {{ tag.desc }}</a>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-            </a>
-        {% endfor %}
-    {% endif %}
-</div>
+
+                <div class="d-inline-flex align-content-between flex-wrap justify-content-around">
+                    {% if articles %}
+                        {%  for article in articles %}
+                            <a href="{{ url_for('navigation_views.read_article', article_id=article.article_id) }}" class="">
+                                <div class="card article-card float-middle">
+                                    <img class="card-img-top" src="{{ '/static/img/articles/' + article.image_file }}" alt="{{ article.preview }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ article.title }}</h5>
+                                        <p class="card-text">{{ article.preview }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 {%  endblock %}

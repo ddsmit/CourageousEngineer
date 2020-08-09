@@ -1,33 +1,38 @@
 {% extends "shared/_layout.html" %}
 {% block main_content %}
-    <h2>Messages</h2>
-    {% if unread_messages %}
-        <h3>Unread</h3>
-        {%  for message in unread_messages %}
-            <div class="row">
-                {{ message.desc }}- From {{ message.name }}, {{ message.email }} 
-            </div>
-            <div class="row">
-                {{ message.content }}
-            </div>
-            <div class="row">
-                <a href="{{ url_for('maintenance.read_message',message_id=message.id) }}">
-                    Mark as Read
-                </a>
-                <br>
-            </div>
-        {% endfor %}
-    {% endif %}
-    {% if read_messages %}
-    <h3>Read Messages</h3>
-    {%  for message in read_messages %}
-
+    <div class="main_content container">
         <div class="row">
-            <a href="{{ url_for('maintenance.read_message',message_id=message.id) }}">
-                {{ message.desc }}- From {{ message.name }}, {{ message.email }}
-            </a>
+            <div class="col-lg-12 col-12">
+                <h2>Messages</h2>
+                {% if unread_messages %}
+                    <h3>Unread</h3>
+                    {%  for message in unread_messages %}
+                        <div class="row">
+                            {{ message.desc }}- From {{ message.name }}, {{ message.email }}
+                        </div>
+                        <div class="row">
+                            {{ message.content }}
+                        </div>
+                        <div class="row">
+                            <a href="{{ url_for('maintenance.read_message',message_id=message.id) }}">
+                                Mark as Read
+                            </a>
+                            <br>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if read_messages %}
+                <h3>Read Messages</h3>
+                {%  for message in read_messages %}
+
+                    <div class="row">
+                        <a href="{{ url_for('maintenance.read_message',message_id=message.id) }}">
+                            {{ message.desc }}- From {{ message.name }}, {{ message.email }}
+                        </a>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
         </div>
-    {% endfor %}
-    {% endif %}
-  
+    </div>
 {%  endblock %}
