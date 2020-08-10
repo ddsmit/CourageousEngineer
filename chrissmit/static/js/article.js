@@ -6,6 +6,9 @@ const article = document.querySelector('article')
 const fullFadePosition = 150;
 const finalOpacity = 0.04;
 
+const imageBottom = postImage.offsetHeight;
+header.setAttribute('style','padding-top: ' + imageBottom + 'px')
+
 function imageControl(e) {
     let topOfHeader = header.offsetTop;
     let windowPosition = window.scrollY;

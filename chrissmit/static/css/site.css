@@ -280,6 +280,10 @@ a:hover.nav-link {
     transform: translate(-50%, 0%);
 }
 
+#header {
+    padding-top: calc(100vh - var(--navHeight));
+}
+
 .article-header {
     padding-top: calc(100vh);
     display: block;
