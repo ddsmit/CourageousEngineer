@@ -23,14 +23,15 @@ def read_article(article_id):
         template_name_or_list='articles/read.html',
         website_title=current_article.title,
         website_description=current_article.preview,
-        website_image= image.get_preview(current_article.image_file),
+        website_image=image.get_preview(current_article.image_file),
         content=current_article,
         release=False,
         suggest_edit=current_user.is_authenticated,
-        go_to_latest = False,
+        go_to_latest=False,
         nav_data=navigation.data(), 
         tags=tags,
-        display_posted = article.is_display_posted(current_article),
+        display_posted=article.is_display_posted(current_article),
+        additional_script='/static/js/article.js',
     )
 
 @blueprint.route('/review/edit/<edit_id>')

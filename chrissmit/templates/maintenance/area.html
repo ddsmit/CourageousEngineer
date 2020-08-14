@@ -1,11 +1,16 @@
 {% extends "shared/_layout.html" %}
 {% block main_content %}
-    {% if available_records %}
-        {% for record in available_records %}
-            <div class="row">
-                <h5><a href="updatesite/{{ record.name }}">{{ record.name }}</a></h5>
+    <div class="main_content container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                {% if available_records %}
+                    {% for record in available_records %}
+                        <div class="row">
+                            <h5><a href="updatesite/{{ record.name }}">{{ record.name }}</a></h5>
+                        </div>
+                    {% endfor %}
+                {%  endif %}
             </div>
-        {% endfor %}
-    {%  endif %}
-
+        </div>
+    </div>
 {% endblock %}

@@ -9,6 +9,7 @@
     --cardHeight: 22rem;
     --cardWidth: 18rem;
     --cardPic: 10rem;
+    --navHeight: 106px;
 }
 
 title {
@@ -23,22 +24,40 @@ html {
     html {
       font-size: calc(16px + 6 * ((100vw - 320px) / 680));
     }
+    .article-image-top {
+        width: 100vw;
+        height: auto;
+    }
 }
 
 @media screen and (min-width: 1000px) {
     html {
       font-size: 16px;      
     }
+    .article-image-top {
+        height: calc(100vh - (var(--navHeight) + 10px) - 5rem);
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .article-content {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
 } 
 
 body {
     background-color: var(--backgroundColor);
     position: relative;
-    min-height: calc(100vh - 160px);
+    min-height: calc(100vh - var(--navHeight) - 10px);
+}
+
+.message {
+    margin-top: var(--navHeight);
 }
 
 .main_content {
-    margin-top: 160px;
+    margin-top: 115px;
     color: var(--primaryFontColor);
     background-color: var(--backgroundColor);
     border: 2px;
@@ -55,7 +74,7 @@ footer {
     background-color: var(--navBackgroundColor);
     color: var(--backgroundColor);
     padding: 10px;
-    position: center;
+    /*position: center;*/
     width: 100%;
     position: absolute;
     bottom: 0;
@@ -72,8 +91,8 @@ h2 {
 }
 
 p {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .nav-outer {
@@ -95,14 +114,6 @@ nav {
     width: 100%    
 }
 
-/* a.nav-link {
-    color: var(--lightAccent);
-    text-align: left;
-    margin-left: auto;
-    margin-right: 0px;
-    width: 100%
-} */
-
 a:hover {
     opacity: 50%;
     color: var(--darkAccent);
@@ -117,11 +128,8 @@ a:hover.nav-link {
     color: var(--darkAccent);
 }
 
-
 #logo {
     display: inline-block;
-    /* height: 80px;
-    width: 80px; */
 }
 
 .logo-image {
@@ -219,7 +227,7 @@ a:hover.nav-link {
     background-color: var(--backgroundColor);
     border-color: var(--darkAccent);
     border-width: 2px;
-    margin-bottom: 15 px;
+    margin-bottom: 15px;
     height: var(--cardHeight);
     width: var(--cardWidth);
     max-width: 95%;
@@ -246,19 +254,42 @@ a:hover.nav-link {
     border-color: var(--lightAccent);
 }
 
-.post-image {
-    padding: 15px;
-    width: 60%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.article-splash {
+    width: 100vw;
+    height: calc(100vh - 115px);
+    position: fixed;
 }
 
-.post-header {
-    padding: 15px;
+.content {
+    margin-top: 30px;
+}
+
+.article-author {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
+.article-image-top {
+    transition-duration: 0.2s;
+    padding: 25px;
+    transition-timing-function: linear;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+#header {
+    padding-top: calc(100vh - var(--navHeight));
+}
+
+.article-header {
+    padding-top: calc(100vh);
     display: block;
     margin-left: auto;
     margin-right: auto; 
     text-align: center;
+    font-size: 2.5rem;
 }
 
