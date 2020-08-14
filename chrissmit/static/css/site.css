@@ -293,3 +293,11 @@ a:hover.nav-link {
     font-size: 2.5rem;
 }
 
+.home-background {
+    position: fixed;
+    width: auto;
+    height: 150%;
+    opacity: 0.06;
+    left: 50%;
+    transform: translate(-40%, -10%);
+}
