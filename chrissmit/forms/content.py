@@ -91,7 +91,7 @@ class ContactForm(FlaskForm):
         choices=[],
     )
     content = TextAreaField(
-        'Article',
+        'Your Feedback',
         validators = [DataRequired()]
     )
     recaptcha = RecaptchaField()
