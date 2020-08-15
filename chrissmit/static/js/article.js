@@ -7,7 +7,7 @@ const fullFadePosition = 150;
 const finalOpacity = 0.04;
 
 const imageBottom = postImage.offsetHeight;
-header.setAttribute('style','padding-top: ' + imageBottom + 'px')
+// header.setAttribute('style','padding-top: ' + imageBottom + 'px')
 
 function imageControl(e) {
     let topOfHeader = header.offsetTop;
@@ -20,12 +20,4 @@ function imageControl(e) {
     }
 }
 
-function calculatePositions(e) {
-    const menuBottom = menu.offsetHeight;
-    const imageBottom = postImage.offsetHeight;
-    header.setAttribute('style','padding-top: ' + imageBottom + 'px')
-}
-
 window.addEventListener('scroll', imageControl);
-window.addEventListener('resize', calculatePositions);
-window.addEventListener('load', calculatePositions);
