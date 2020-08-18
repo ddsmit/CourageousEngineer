@@ -49,5 +49,5 @@ def save_preview(image_file, file_name):
 
 def get_preview(image_file):
     if  not ('.svg' in image_file or '.ico' in image_file):
-        return 'https://www.courageousengineer.com/static/preview/' + image_file
+        return 'https://www.courageousengineer.com/static/img/preview/' + image_file
         
