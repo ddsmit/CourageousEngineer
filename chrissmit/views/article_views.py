@@ -24,6 +24,7 @@ def read_article(article_id):
         website_title=current_article.title,
         website_description=current_article.preview,
         website_image=image.get_preview(current_article.image_file),
+        website_publish=current_article.posted,
         content=current_article,
         release=False,
         suggest_edit=current_user.is_authenticated,
@@ -42,14 +43,15 @@ def view(edit_id):
     can_release = profile.all_access() and current_user.id != current_edit.author_id and current_edit.is_ready_for_release 
     return render_template(
         template_name_or_list='articles/read.html',
-        website_title = current_edit.title,
-        content = current_edit,
+        website_title=current_edit.title,
+        content=current_edit,
         release=can_release,
         suggest_edit=current_user.is_authenticated,
-        go_to_latest = False,
+        go_to_latest=False,
         nav_data=navigation.data(), 
         tags=tags,
         display_posted = article.is_display_posted(current_edit),
+        additional_script='/static/js/article.js',
     )
 
 @blueprint.route('/articles/tag/<tag>')
@@ -79,5 +81,3 @@ def all_articles():
         tags=tags,
         current_tags=[],
     )
-
-        

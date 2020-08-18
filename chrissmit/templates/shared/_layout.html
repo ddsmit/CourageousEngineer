@@ -20,6 +20,9 @@
     {% else %}
         <meta name="image" property="og:image" content="https://www.CourageousEngineer.com/static/img/logo.png" />
     {% endif %}
+    {% if website_publish %}
+        <meta property="og:published_time" content="{{ website_publish }}" />
+    {% endif %}
 
     <link rel="icon" 
       type="image/ico" 
