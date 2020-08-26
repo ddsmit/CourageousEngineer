@@ -3,25 +3,35 @@
 <head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name = "twitter:card" content = "summary_large_immage">
     {% if website_title %}
         <title>{{ website_title }}</title>
         <meta property="og:title" content="{{ website_title }}" />
+        <meta name = "twitter:title" content = "{{ website_title }}">
     {% else %}
         <title>Courageous Engineer</title>
         <meta property="og:title" content="Courageous Engineer" />
+        <meta name = "twitter:title" content = "Welcome to Courageous Engineer">
     {% endif %}    
     {% if website_description %}
         <meta property="og:description" content="{{ website_description }}" />
+        <meta name = "twitter:description" content = "{{ website_description }}">
     {% else %}
         <meta property="og:description" content="Speak out and be your authentic self." />
+        <meta name = "twitter:description" content = "Speak out and be your authentic self.">
     {% endif %}
     {% if website_image %}
         <meta name="image" property="og:image" content="{{ website_image }}" />
+        <meta name = "twitter:image" content = "{{ website_image }}">
     {% else %}
         <meta name="image" property="og:image" content="https://www.CourageousEngineer.com/static/img/logo.png" />
+        <meta name = "twitter:image" content = "https://www.CourageousEngineer.com/static/img/logo.png">
     {% endif %}
     {% if website_publish %}
         <meta property="og:published_time" content="{{ website_publish }}" />
+    {% endif %}
+    {% if website_author_twitter %}
+        <meta name = "twitter:creator" content = "{{ website_author_twitter }}">
     {% endif %}
 
     <link rel="icon" 
