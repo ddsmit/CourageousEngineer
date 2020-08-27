@@ -19,12 +19,14 @@ def read_article(article_id):
         return redirect(url_for('navigation_views.all_articles'))
 
     tags = article.get_edit_tags(current_article.current_edit_id)
+    author = profile.get(id=current_article.author_id)
     return render_template(
         template_name_or_list='articles/read.html',
         website_title=current_article.title,
         website_description=current_article.preview,
         website_image=image.get_preview(current_article.image_file),
         website_publish=current_article.posted,
+        website_author_twitter=author.twitter_handle,
         content=current_article,
         release=False,
         suggest_edit=current_user.is_authenticated,
