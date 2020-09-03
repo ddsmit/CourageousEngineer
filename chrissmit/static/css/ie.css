@@ -17,7 +17,7 @@ title {
     font-weight: bold;
 }
 html {
-    background-color: var(--backgroundColor);
+    background-color: lightgrey;
     font-size: 22px;
 }
 
@@ -36,7 +36,7 @@ html {
       font-size: 16px;      
     }
     .article-image-top {
-        height: calc(100vh - (var(--navHeight) + 10px) - 5rem);
+        height: calc(100vh - (106px + 10px) - 5rem);
         width: auto;
         margin-left: auto;
         margin-right: auto;
@@ -48,33 +48,32 @@ html {
 } 
 
 body {
-    background-color: lightGrey;
-    background-color: var(--backgroundColor);
+    background-color: lightgrey;
     position: relative;
-    min-height: calc(100vh - var(--navHeight) - 10px);
+    min-height: calc(100vh - 106px - 10px);
 }
 
 .message {
-    margin-top: var(--navHeight);
+    margin-top: 106px;
 }
 
 .main_content {
     margin-top: 115px;
-    color: var(--primaryFontColor);
-    background-color: var(--backgroundColor);
+    color: rgba(80,80,80,1);
+    background-color: lightgrey;
     border: 2px;
     padding-bottom:70px;
 }
 
 .main_content::selection {
-    background-color: var(--navBackgroundColor);
-    color: var(--backgroundColor);
+    background-color: lightgrey;
+    color: lightgrey;
     margin-top: 15px;
 }
 
 footer {
-    background-color: var(--navBackgroundColor);
-    color: var(--backgroundColor);
+    background-color: rgba(80,80,80,0.95);
+    color: lightgrey;
     padding: 10px;
     /*position: center;*/
     width: 100%;
@@ -83,11 +82,11 @@ footer {
 }
 
 h1 {
-    color: var(--primaryFontColor);
+    color: rgba(80,80,80,1);
 }
 
 h2 {
-    color: var(--primaryFontColor);
+    color: rgba(80,80,80,1);
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -98,7 +97,7 @@ p {
 }
 
 .nav-outer {
-    background-color: var(--navBackgroundColor);
+    background-color: rgba(80,80,80,0.95);
     width: 100%;
 }
 
@@ -109,7 +108,7 @@ nav {
 }
 
 .nav-link {
-    color: var(--lightAccent);
+    color: #6FC7C7;
     text-align: left;
     margin-left: auto;
     margin-right: 0px;
@@ -118,16 +117,16 @@ nav {
 
 a:hover {
     opacity: 50%;
-    color: var(--darkAccent);
+    color: #186262;
 }
 
 a:hover.nav-link {
-    color: var(--lightAccent);
+    color: #6FC7C7;
     opacity: 60%;
 }
 
 .main_content a {
-    color: var(--darkAccent);
+    color: #186262;
 }
 
 #logo {
@@ -141,16 +140,18 @@ a:hover.nav-link {
 }
 
 #nav-drop-article, #nav-drop-about {
-  background-color: var(--navDropDownBackgroundColor);
+  background-color: rgba(80,80,80,0.8);
 }
 
 .dropdown-item {
-    color: var(--navDropDownText);
+    color: lightgrey;
     font-size: 1.5rem;
 }
 
-.dropdown-item:active {
-  background-color: var(--darkAccent);
+.dropdown-item:hover {
+  background-color: lightGrey;
+    color: rgba(80,80,80,0.8);
+  opacity: 0.8;
 }
 
 .collapse.show {
@@ -175,35 +176,35 @@ a:hover.nav-link {
 }
 
 .btn-primary {
-    background-color: var(--darkAccent);
-    border-color: var(--darkAccent);
+    background-color: #186262;
+    border-color: #186262;
 }
 
 .btn-primary:focus {
-    background-color: var(--darkAccent);
-    border-color: var(--darkAccent);
-    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
+    background-color: #186262;
+    border-color: #186262;
+    box-shadow: inset 0 1px 1px #186262, 0 0 8px #186262;
 }
 
 .btn-primary:hover {
-    background-color: var(--darkAccent);
+    background-color: #186262;
     opacity: 70%;
 }   
 
 .btn-primary:not(:disabled):not(:disabled):active  {
-    background-color: var(--darkAccent);
-    border-color: var(--navDropDownBackgroundColor);
+    background-color: #186262;
+    border-color: rgba(80,80,80,0.8);
     opacity: 60%;
-    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
+    box-shadow: inset 0 1px 1px #186262, 0 0 8px #186262;
 }
 
 .form-control {
-    border-color: var(--darkAccent);
+    border-color: #186262;
 }
 
 .form-control:focus {
-    border-color: var(--darkAccent);
-    box-shadow: inset 0 1px 1px var(--darkAccent), 0 0 8px var(--darkAccent);
+    border-color: #186262;
+    box-shadow: inset 0 1px 1px #186262, 0 0 8px #186262;
 }
 
 #reason option:hover,
@@ -215,10 +216,10 @@ a:hover.nav-link {
 #reason option:hover,
 #reason option:focus,
 #reason option:active {
-    background-color: var(--darkAccent);
-    outline: var(--darkAccent);
-    color: var(--navDropDownText);
-    box-shadow: inset 20px 20px var(--darkAccent);
+    background-color: #186262;
+    outline: #186262;
+    color: lightgrey;
+    box-shadow: inset 20px 20px #186262;
   }
 
 #content {
@@ -239,7 +240,7 @@ a:hover.nav-link {
 }
 
 .article-preview-link:hover {
-    filter: drop-shadow(1px 2px 0 var(--lightAccent));
+    filter: drop-shadow(1px 2px 0 #6FC7C7);
     opacity: 0.95;
 }
 
@@ -254,18 +255,18 @@ a:hover.nav-link {
 }
 
 .article-card {
-    background-color: var(--backgroundColor);
-    border-color: var(--darkAccent);
+    background-color: lightgrey;
+    border-color: #186262;
     border-width: 2px;
     margin-bottom: 15px;
-    height: var(--cardHeight);
-    width: var(--cardWidth);
+    height: 22rem;
+    width: 18rem;
     max-width: 95%;
 }
 
 .card-img-top {
     width: auto;
-    height: var(--cardPic);
+    height: 10rem;
     object-fit: contain;
     margin-top: 15px;
     border-radius: 50%;
@@ -283,7 +284,7 @@ a:hover.nav-link {
     border-radius: 20%;
     margin: 15px;
     border-width: 2px;
-    border-color: var(--lightAccent);
+    border-color: #6FC7C7;
 }
 
 .article-splash {
@@ -305,18 +306,24 @@ a:hover.nav-link {
 }
 
 .article-image-top {
+    transition-duration: 0.2s;
     padding: 25px;
     transition-timing-function: linear;
     position: fixed;
     left: 50%;
     transform: translate(-50%, 0%);
+
     width: 100vw;
-    height: calc(100vh - 115px - var(--bottomTextHeight));
+    height: calc(100vh - 115px - 6rem);
     object-fit: contain;
 }
 
+/*#header {*/
+/*    padding-top: calc(100vh - 106px - 6rem);*/
+/*}*/
+
 .article-header {
-    padding-top: calc(100vh - var(--navHeight) - var(--bottomTextHeight));
+    padding-top: calc(100vh - 106px - 6rem);
     display: block;
     margin-left: auto;
     margin-right: auto; 
@@ -331,19 +338,4 @@ a:hover.nav-link {
     opacity: 0.06;
     left: 50%;
     transform: translate(-40%, -10%);
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-     .article-image-top {
-         width: auto;
-         height: 80vh;
-         offset
-     }
-    .logo-image {
-        width: 130px;
-        height: auto;
-    }
-    .main_content {
-        margin-top: 160px;
-    }
 }
