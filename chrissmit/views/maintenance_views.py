@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, request
 from chrissmit.forms.content import UpdateProfile, UpdatesForm, ArticleForm
-from chrissmit import db
 from chrissmit.services import profile, article, update, image, messages, navigation
 from flask_login import current_user, login_required
 
