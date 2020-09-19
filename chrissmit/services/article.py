@@ -125,17 +125,13 @@ def get_current_used_tags():
     ).join(
         Tags, EditTags.tag_id==Tags.id
     ).filter(Article.is_released == True).distinct(EditTags.tag_id)
-    tag_ids = set(
-        tag.tag_id
+    tags = {
+        tag.tag_id:tag.desc
         for tag in tag_data
-    )
-    tag_descs = set(
-        tag.desc
-        for tag in tag_data
-    )
+    }
     return [
         {'desc':desc, 'tag_id':tag_id}
-        for desc, tag_id in zip(tag_descs, tag_ids)
+        for tag_id, desc in tags.items()
     ]
 
 def get_edit_tags(edit_id):
