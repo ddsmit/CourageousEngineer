@@ -1,4 +1,4 @@
-![Courageous Engineer](https://www.courageouengineer.com/static/img/logo.png)
+![Courageous Engineer](https://github.com/ddsmit/CourageousEngineer/blob/master/chrissmit/static/img/logo.png)
 # Welcome to the code home of [Courageous Engineer](https://www.courageousengineer.com)!
 #### Courageous Engineer is a platform for people to share their experiences in the engineering field which required courage.
 #### From social biases to doing the right thing when there is opposition, many of us have had situations that required courage.
