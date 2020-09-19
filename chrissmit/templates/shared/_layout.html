@@ -21,11 +21,15 @@
         <meta name = "twitter:description" content = "Speak out and be your authentic self.">
     {% endif %}
     {% if website_image %}
-        <meta name="image" property="og:image" content="{{ website_image }}" />
-        <meta name = "twitter:image" content = "{{ website_image }}">
+        <meta name="image" property="og:image" content="https://www.courageousengineer.com/static/img/{{ website_image }}" />
+        <meta name="image" property="og:image" content="https://courageousengineer.com/static/img/{{ website_image }}" />
+        <meta name = "twitter:image" content = "https://www.courageousengineer.com/static/img/{{ website_image }}">
+        <meta name = "twitter:image" content = "https://courageousengineer.com/static/img/{{ website_image }}">
     {% else %}
         <meta name="image" property="og:image" content="https://www.CourageousEngineer.com/static/img/logo.png" />
         <meta name = "twitter:image" content = "https://www.CourageousEngineer.com/static/img/logo.png">
+        <meta name="image" property="og:image" content="https://CourageousEngineer.com/static/img/logo.png" />
+        <meta name = "twitter:image" content = "https://CourageousEngineer.com/static/img/logo.png">
     {% endif %}
     {% if website_publish %}
         <meta property="og:published_time" content="{{ website_publish }}" />
