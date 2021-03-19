@@ -14,7 +14,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 Markdown==3.2.2
 MarkupSafe==1.1.1
-Pillow==7.1.1
+Pillow==8.1.1
 pycparser==2.19
 secure==0.2.1
 six==1.13.0
